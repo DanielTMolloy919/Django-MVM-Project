@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.text import slugify
 from django.shortcuts import render, redirect
+from rest_framework import viewsets
+from .serializers import VendorSerializer
 
 from .models import Vendor # importing our vendors database 
 from apps.product.models import Product 
@@ -50,3 +52,7 @@ def add_product(request):
         form = ProductForm()
     
     return render(request, 'vendor/add_product.html', {'form': form}) # render the empty form for the user to fill in
+
+class VendorView(viewsets.ModelViewSet):
+    serializer_class = VendorSerializer
+    queryset = Vendor.objects.all()

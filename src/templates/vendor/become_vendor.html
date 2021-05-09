@@ -1,0 +1,25 @@
+{% extends 'core/base.html'%}
+
+{% block title %}Become vendor | {% endblock %}
+
+{% block content %} 
+    <h1 class="title">Become vendor</h1>
+
+    <form method="post" action"."> <!--accesses the form created in the views file-->
+        {% csrf_token %} <!--ensures that only the user can edit their account settings-->
+
+        {{ form.as_p }} <!--displays form as a paragraph-->
+
+        <div class="field"> <!--creating the button to submit the form-->
+            <div class="control">
+                <button class="button is-dark is-uppercase">Sign up</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <h2 class="subtitle">Already have an account?</h2>
+
+    <a href="{% url 'login' %}">Log in </a>
+{% endblock %}

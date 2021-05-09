@@ -1,0 +1,19 @@
+{% extends 'core/base.html'%}
+
+{% block title %}Log in | {% endblock %}
+
+{% block content %} 
+    <h1 class="title">Log in</h1>
+
+    <form method="post" action"."> <!--accesses the log in form created in the views file-->
+        {% csrf_token %} <!--ensures that only the user can edit their account settings-->
+
+        {{ form.as_p }} <!--displays log in form as a paragraph-->
+
+        <div class="field"> <!--creating the button to log in-->
+            <div class="control">
+                <button class="button is-dark is-uppercase">Log in</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

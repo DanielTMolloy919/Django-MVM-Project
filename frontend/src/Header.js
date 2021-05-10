@@ -5,16 +5,17 @@ import './Header.css'
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MessageIcon from '@material-ui/icons/Message';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function Header() {
     return (
         <div className='header'>
-            <img 
-            className="header__logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1000px-Amazon_logo.svg.png"></img>
+            <div
+            className="header__logo">CEBERUS</div>
 
             <div className='header__search'>
-                <input className ='header__searchInput' type="text"/>
+                <input className ='header__searchInputDevice' type="text" placeholder="Device"/>
+                <input className ='header__searchInputIssue' type="text" placeholder="Repair/Issue"/>
                 <SearchIcon className="header__searchIcon"/>
             </div>
 
@@ -33,9 +34,9 @@ function Header() {
                     <MessageIcon className="header__optionIcon"/>
                     <div className="header__optionText">Messaging</div>
                 </div>
-                <div className="header__option">
-                    <NotificationsIcon className="header__optionIcon"/>
-                    <div className="header__optionText">Notifications</div>
+                <div className="header__option header__accountOption">
+                    <AccountCircleIcon className="header__optionIcon"/>
+                    <div className="header__optionText">Account</div>
                 </div>
             </div>
         </div>

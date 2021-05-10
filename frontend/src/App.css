@@ -1,0 +1,6 @@
+:root {
+    --primary-color: #3B3355;
+    --primary-color-light: rgba(255,253,250,0.6);
+
+    --corner-radius-small: 0.4rem;
+}

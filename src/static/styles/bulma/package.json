@@ -1,0 +1,17 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "style.scss",
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url style.scss ../style.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bulma": "^0.9.2",
+    "node-sass": "^6.0.0"
+  }
+}

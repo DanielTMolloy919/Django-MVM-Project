@@ -1,3 +1,29 @@
 {
-    "python.pythonPath": "env\\Scripts\\python.exe"
+    "python.pythonPath": "env\\Scripts\\python.exe",
+    "restoreTerminals.terminals": [
+        {
+            "splitTerminals": [
+                {
+                    "name": "server",
+                    "commands": ["cd src", "python manage.py runserver"]
+                },
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "command centre",
+                    "commands": []
+                },
+            ]
+        },
+        {
+            "splitTerminals": [
+                {
+                    "name": "sass updater",
+                    "commands": ["cd src/static/styles/bulma", "npm run css-build"]
+                },
+            ]
+        }
+      ]
 }

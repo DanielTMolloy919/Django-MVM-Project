@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 
 def search(request):
-    query = request.GET.get('query', '')
+    query = request.GET.get('repair', '')
     
     products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)) # if either the description 
 

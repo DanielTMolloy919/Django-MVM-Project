@@ -26,3 +26,6 @@ def product(request, category_slug, product_slug):
 def category(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     return render(request, 'product/category.html', {'category': category}) 
+
+def show_category(request): # very lightweight category viewer
+    return render(request, "product/category_list.html", {'category': Category.objects.all()})

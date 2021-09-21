@@ -5,7 +5,7 @@
             "splitTerminals": [
                 {
                     "name": "server",
-                    "commands": ["cd src", "python manage.py runserver"]
+                    "commands": ["& 'g:/My Drive/Side Project/Django Website/env/Scripts/Activate.ps1'","cd src", "python manage.py runserver"]
                 },
             ]
         },
@@ -13,7 +13,7 @@
             "splitTerminals": [
                 {
                     "name": "command centre",
-                    "commands": []
+                    "commands": ["& 'g:/My Drive/Side Project/Django Website/env/Scripts/Activate.ps1'"]
                 },
             ]
         },
@@ -21,7 +21,7 @@
             "splitTerminals": [
                 {
                     "name": "sass updater",
-                    "commands": ["cd src/static/styles/bulma", "npm run css-build"]
+                    "commands": ["& 'g:/My Drive/Side Project/Django Website/env/Scripts/Activate.ps1'","cd src/static/styles/bulma", "npm run css-build"]
                 },
             ]
         }

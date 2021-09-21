@@ -2,6 +2,14 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" />
+{% comment %} <script>
+    $( function() {
+    $( "#device" ).autocomplete({
+      source: "{% url %}"
+    });
+});
+</script> {% endcomment %}
 
 <html>
     <head>
@@ -32,11 +40,11 @@
                         <form method="get" action="{% url 'search' %}">
                         <div class="field has-addons"> 
                             <p class="control is-expanded">
-                                <input type="text" class="input navbar-input" placeholder="Device" name="device">
+                                <input type="text" class="input navbar-input" placeholder="Device" name="device" id="device">
                             </p>
 
                             <p class="control is-expanded">
-                                <input type="text" class="input navbar-input" placeholder="Repair/Issue" name="repair">
+                                <input type="text" class="input navbar-input" placeholder="Repair/Issue" name="repair" id="repair">
                             </p>
 
                             

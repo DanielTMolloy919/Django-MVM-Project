@@ -1,12 +1,46 @@
 {% extends 'core/base.html' %}
 
+
+{% comment %} Connecting to Google's Map API {% endcomment %}
+
 {% block title %}Welcome | {% endblock %}
 
 {% block content %}
 
+<script>
+    let autocomplete
+    {% comment %} add google places functionality to address autocomplete, narrowing down results {% endcomment %}
+    {% comment %} https://developers.google.com/maps/documentation/javascript/places-autocomplete {% endcomment %}
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'),
+        {
+            types: ['street_address'],
+            componentRestrictions: {'country': ['AU']},
+            fields: ['place_id']
+        });
+    }
+</script>
+{% comment %} Gets the Maps API Javascript and points to the initAutocomplete function defined above {% endcomment %}
+{% comment %} <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNEeNfnejMFeUSzOWbc25EwrfdCDXIeqg&libraries=places&callback=initAutocomplete"></script> {% endcomment %}
+
 <div class="field has-addons">
-    <p class="control is-expanded">
-        <input class="input" type="text" placeholder="Address">
+    <p class="control is-expanded has-icons-left">
+        <input id="device" class="input" type="text" placeholder="Iphone 8">
+        <span class="icon is-small is-left">
+            <span class="material-icons">smartphone</span>
+        </span>
+    </p>
+    <p class="control is-expanded has-icons-left">
+        <input id="repair" class="input" type="text" placeholder="Cracked Screen">
+        <span class="icon is-small is-left">
+            <span class="material-icons">construction</span>
+        </span>
+    </p>
+    <p class="control is-expanded has-icons-left">
+        <input id="autocomplete" class="input" type="text" placeholder="Location">
+        <span class="icon is-small is-left">
+            <span class="material-icons">place</span>
+        </span>
     </p>
     <p class="control">
         <button class="button is-primary-color-dark">

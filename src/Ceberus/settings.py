@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5w8*sg51*g(fj^f)+wvuf#o79-1mi#r+ykh0^zdl7=2^dkb&(@
 DEBUG = True
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'vendor_admin'
+LOGIN_REDIRECT_URL = '/vendor/vendor-admin'
 LOGOUT_REDIRECT_URL = 'frontpage'
 
 ALLOWED_HOSTS = []

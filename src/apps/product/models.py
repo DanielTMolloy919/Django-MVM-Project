@@ -31,6 +31,10 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
 
+# class Repair(models.Model):
+#     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE) # this is sort of like a one to one field, except that products can have more than one category. As such, this allows us to get all the products in a category
+#     vendor = models.ForeignKey(Vendor, related_name='products', on_delete=models.CASCADE) # This will allow us to get all the products of a vendor   
+
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE) # this is sort of like a one to one field, except that products can have more than one category. As such, this allows us to get all the products in a category
     vendor = models.ForeignKey(Vendor, related_name='products', on_delete=models.CASCADE) # This will allow us to get all the products of a vendor

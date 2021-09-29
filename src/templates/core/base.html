@@ -2,7 +2,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" />
+{% comment %} <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" /> {% endcomment %}
 {% comment %} <script>
     $( function() {
     $( "#device" ).autocomplete({
@@ -41,7 +41,7 @@ debugger;
             <div class="navbar-menu" id="main-navbar">
                 <div class="navbar-center">
                     <div class="navbar-item">
-                        <form method="get" action="{% url 'search' %}">
+                        {% comment %} <form method="get" action="{% url 'search' %}"> {% endcomment %}
                         <div class="field has-addons"> 
                             <p class="control is-expanded">
                                 <input type="text" class="input navbar-input" placeholder="Device" name="device" id="device">
@@ -85,7 +85,7 @@ debugger;
         <footer class="footer">
             <h3 class="is-size-4 mb-4">Ceberus</h3>
 
-            {% if request.user.is_authenticated%} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
+            {% if request.user.is_authenticated %} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
                 <a href="{% url 'vendor_admin' %}">Vendor admin</a>
             {% else %} <!--otherwise link to becoming a vendor-->
                 <a href="{% url 'become_vendor' %}">Become vendor</a>

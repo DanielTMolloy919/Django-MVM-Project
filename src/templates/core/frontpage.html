@@ -23,34 +23,36 @@
 {% comment %} Gets the Maps API Javascript and points to the initAutocomplete function defined above {% endcomment %}
 {% comment %} <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNEeNfnejMFeUSzOWbc25EwrfdCDXIeqg&libraries=places&callback=initAutocomplete"></script> {% endcomment %}
 
-<div class="field has-addons">
-    <p class="control is-expanded has-icons-left">
-        <input id="device" class="input" type="text" placeholder="Iphone 8">
-        <span class="icon is-small is-left">
-            <span class="material-icons">smartphone</span>
-        </span>
-    </p>
-    <p class="control is-expanded has-icons-left">
-        <input id="repair" class="input" type="text" placeholder="Cracked Screen">
-        <span class="icon is-small is-left">
-            <span class="material-icons">construction</span>
-        </span>
-    </p>
-    <p class="control is-expanded has-icons-left">
-        <input id="autocomplete" class="input" type="text" placeholder="Location">
-        <span class="icon is-small is-left">
-            <span class="material-icons">place</span>
-        </span>
-    </p>
-    <p class="control">
-        <button class="button is-primary-color-dark">
-            <span class="material-icons">search</span>
-        </button>
-    </p>
+<form method="POST" action="{% url 'search' %}">{% csrf_token %}
+    <div class="field has-addons">
+        <p class="control is-expanded has-icons-left">
+            <input id="device" class="input" type="text" placeholder="iPhone 8">
+            <span class="icon is-small is-left">
+                <span class="material-icons">smartphone</span>
+            </span>
+        </p>
+        <p class="control is-expanded has-icons-left">
+            <input id="repair" class="input" type="text" placeholder="Cracked Screen">
+            <span class="icon is-small is-left">
+                <span class="material-icons">construction</span>
+            </span>
+        </p>
+        <p class="control is-expanded has-icons-left">
+            <input id="autocomplete" class="input" type="text" placeholder="Mayfield 2304">
+            <span class="icon is-small is-left">
+                <span class="material-icons">place</span>
+            </span>
+        </p>
+        <p class="control">
+            <button class="button is-primary-color-dark">
+                <span class="material-icons">search</span>
+            </button> <!---->
+        </p>
+    </div>
+</form>
 
-    </div>
-        {% for product in newest_products %}
-            {% include 'product/parts/list_item.html' %}
-        {% endfor %}
-    </div>
+    {% for product in newest_products %}
+        {% include 'product/parts/list_item.html' %}
+    {% endfor %}
+</div>
 {% endblock %}

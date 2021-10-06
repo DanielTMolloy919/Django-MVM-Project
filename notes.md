@@ -27,12 +27,19 @@
 
 4. in apps.py change the AppConfig variable name to `'apps.<app_name>'`
 
-   e.g. from`name = 'product'` to `name = 'apps.product'`
+   e.g. from `name = 'product'` to `name = 'apps.product'`
 
 ### Migrate New Models
 
 1. run `python manage.py makemigrations`
 2.  run `python manage.py migrate`
 
+## Django Admin
 
+https://youtu.be/PD3YnPSHC-c
 
+1. In the src folder run `python manage.py shell`
+2. Import your desired model e.g. `from apps.vendor.models import Vendor`
+3. Useful commands
+   - Retrieve all objects `Product.objects.all()`
+   - 

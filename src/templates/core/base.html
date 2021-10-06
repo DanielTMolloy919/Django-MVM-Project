@@ -40,8 +40,8 @@ debugger;
         
             <div class="navbar-menu" id="main-navbar">
                 <div class="navbar-center">
-                    <div class="navbar-item">
-                        {% comment %} <form method="get" action="{% url 'search' %}"> {% endcomment %}
+                    {% comment %} <div class="navbar-item">
+                        <form method="get" action="{% url 'search' %}">
                         <div class="field has-addons"> 
                             <p class="control is-expanded">
                                 <input type="text" class="input navbar-input" placeholder="Device" name="device" id="device">
@@ -60,7 +60,7 @@ debugger;
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
                 <div class="navbar-end">
                     {% comment %} {% for category in menu_categories %}
                         <a href="{% url 'category' category.slug %}" class="navbar-item">{{ category.title }}</a>
@@ -68,7 +68,11 @@ debugger;
                     <a href="{% url 'contact' %}" class="navbar-item">Contact</a>  {% endcomment %}
                     <div class="navbar-item">
                         <div class="control">
-                            <a class="button is-rounded" href="{% url 'login' %}">Log in</a>
+                            {% if request.user.is_authenticated %} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
+                                <a class="button is-rounded" href="{% url 'logout' %}">Logout</a>
+                            {% else %} <!--otherwise link to becoming a vendor-->
+                                <a class="button is-rounded" href="{% url 'login' %}">Login</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

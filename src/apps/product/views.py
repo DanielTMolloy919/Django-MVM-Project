@@ -5,13 +5,19 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Category, Product
 
-def search(request):
-    query = request.GET.get('repair', '')
-    
-    products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)) # if either the description 
+from .filters import ProductFilter # import the filter for the search view
 
-    return render(request, 'product/search.html', {'products': products, 'query': query
-    })  
+def search(request):
+    
+    productFilter = ProductFilter(request.GET, queryset=Product.objects.all())
+
+    return render(request, 'product/search.html', {'filter': productFilter})
+    
+    # query = request.GET.get('repair', '')
+    
+    # products = Product.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)) # if either the description 
+
+    return render(request, 'product/search.html', {})  
 
 def product(request, category_slug, product_slug):
     product = get_object_or_404(Product, category__slug=category_slug, slug=product_slug)

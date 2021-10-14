@@ -67,8 +67,9 @@ debugger;
                     {% endfor %}
                     <a href="{% url 'contact' %}" class="navbar-item">Contact</a>  {% endcomment %}
                     <div class="navbar-item">
-                        <div class="control">
+                        <div class="buttons">
                             {% if request.user.is_authenticated %} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
+                                <a class="button is-rounded" href="{% url 'edit_profile' %}" >Edit Profile</a>
                                 <a class="button is-rounded" href="{% url 'logout' %}">Logout</a>
                             {% else %} <!--otherwise link to becoming a vendor-->
                                 <a class="button is-rounded" href="{% url 'login' %}">Login</a>

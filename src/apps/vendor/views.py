@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.text import slugify
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
@@ -35,6 +35,23 @@ def vendor_admin(request): # code for the vendor interface
 
     return render(request, 'vendor/vendor_admin.html', {'vendor': vendor, 'products': products})
 
+@login_required
+def edit_profile(request): # This allows a vendor to edit their profile objects, e.g. icon, thumbnail etc.
+
+    if request.method == 'POST': # if the product entry form has already been submitted
+        form = UserChangeForm(request.POST, request.FILES) # put all the data collected into the form object
+
+        if form.is_valid(): # if the user entry is valid then create the product
+            profile = form.save
+            product.vendor = request.user.vendor
+            product.slug = slugify(product.title)
+            product.save()
+
+            return redirect('vendor_admin') # return the uesr to the admin dashboard
+    else: # if it hasn't been filled, create an empty form
+        form = UserChangeForm()
+    
+    return render(request, 'vendor/edit_profile.html',{'form': form})
 
 @login_required
 def add_product(request):
@@ -47,7 +64,7 @@ def add_product(request):
             product.slug = slugify(product.title)
             product.save()
 
-            return redirect('vendor_admin') # return the uesr to the admin dashboard
+            return redirect('add_product') # return the user to the admin dashboard
     else: # if it hasn't been filled, create an empty form
         form = ProductForm()
     

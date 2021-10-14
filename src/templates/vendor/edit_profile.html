@@ -1,19 +1,22 @@
 {% extends 'core/base.html'%}
 
-{% block title %}Add product | {% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %} 
-    <h1 class="title">Add product</h1>
+    <h1 class="title">Edit Profile</h1>
 
-    <form method="post" action="" enctype="multipart/form-data"> <!--enctype setting is required when dealing with images-->
+    <form method="post" action"."> <!--accesses the form created in the views file-->
         {% csrf_token %} <!--ensures that only the user can edit their account settings-->
 
         {{ form.as_p }} <!--displays form as a paragraph-->
 
         <div class="field"> <!--creating the button to submit the form-->
             <div class="control">
-                <button class="button is-dark is-uppercase">Add Product</button>
+                <button class="button is-dark is-uppercase">Update</button>
             </div>
         </div>
     </form>
+
+    <hr>
+
 {% endblock %}

@@ -2,3 +2,7 @@ env/*
 ceberus_env/*
 src/static/styles/bulma/node_modules/*
 src/apps/solr/*
+frontend/*
+.vscode/*
+notes.md
+TODO.md

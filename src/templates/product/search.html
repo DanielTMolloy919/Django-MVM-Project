@@ -17,8 +17,12 @@
         {{ filter.form.as_p }}
         <input type="submit"/>
     </form>
-    
+    <div class="column is-12 product-list-item">
     {% for obj in filter.qs %}
-        {{obj.category }} - ${{ obj.price }} <br />
+        {% comment %} {{obj.category }} - ${{ obj.price }} <br /> {% endcomment %}
+        {{obj.category }}
+        {% include 'product/parts/list_item.html' %}
     {% endfor %}
+    
+    </div>
 {% endblock %}

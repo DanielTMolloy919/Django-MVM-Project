@@ -1,6 +1,0 @@
- - Complete MVM Tutorial
-    - Create Product Backend
-    - Create Product Display
-    - Create Vendor Page
-    - Auto Generate Email
- - Create Search and Filtering Functionality

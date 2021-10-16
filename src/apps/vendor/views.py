@@ -38,23 +38,24 @@ def vendor_admin(request): # code for the vendor interface
 @login_required
 def edit_profile(request): # This allows a vendor to edit their profile objects, e.g. icon, thumbnail etc.
 
-    if request.method == 'POST': # if the product entry form has already been submitted
-        form = UserChangeForm(request.POST, request.FILES) # put all the data collected into the form object
+    # if request.method == 'POST': # if the product entry form has already been submitted
+    #     form = UserChangeForm(request.POST, request.FILES) # put all the data collected into the form object
 
-        if form.is_valid(): # if the user entry is valid then create the product
-            profile = form.save
-            product.vendor = request.user.vendor
-            product.slug = slugify(product.title)
-            product.save()
+    #     if form.is_valid(): # if the user entry is valid then create the product
+    #         profile = form.save
+    #         product.vendor = request.user.vendor
+    #         product.slug = slugify(product.title)
+    #         product.save()
 
-            return redirect('vendor_admin') # return the uesr to the admin dashboard
-    else: # if it hasn't been filled, create an empty form
-        form = UserChangeForm()
+    #         return redirect('vendor_admin') # return the uesr to the admin dashboard
+    # else: # if it hasn't been filled, create an empty form
+    #     form = UserChangeForm()
     
-    return render(request, 'vendor/edit_profile.html',{'form': form})
+    return render(request, 'vendor/edit_profile.html',) # {'form': form}
 
 @login_required
 def add_product(request):
+    success = False
     if request.method == 'POST': # if the product entry form has already been submitted
         form = ProductForm(request.POST, request.FILES) # put all the data collected into the form object
 
@@ -64,11 +65,13 @@ def add_product(request):
             product.slug = slugify(product.title)
             product.save()
 
-            return redirect('add_product') # return the user to the admin dashboard
+            return redirect('add_product',success=True) # return the user to the admin dashboard
     else: # if it hasn't been filled, create an empty form
         form = ProductForm()
+        if 'success' in request.GET:
+            success = True
     
-    return render(request, 'vendor/add_product.html', {'form': form}) # render the empty form for the user to fill in
+    return render(request, 'vendor/add_product.html', {'form': form, 'success':success}) # render the empty form for the user to fill in
 
 class VendorView(viewsets.ModelViewSet):
     serializer_class = VendorSerializer

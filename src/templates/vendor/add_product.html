@@ -3,17 +3,25 @@
 {% block title %}Add product | {% endblock %}
 
 {% block content %} 
-    <h1 class="title">Add product</h1>
-
-    <form method="post" action="" enctype="multipart/form-data"> <!--enctype setting is required when dealing with images-->
-        {% csrf_token %} <!--ensures that only the user can edit their account settings-->
-
-        {{ form.as_p }} <!--displays form as a paragraph-->
-
-        <div class="field"> <!--creating the button to submit the form-->
-            <div class="control">
-                <button class="button is-dark is-uppercase">Add Product</button>
-            </div>
+    {% if submitted %}
+        <h1>Submission Success</h1>
+        <div class="control">
+            <button class="button is-dark is-uppercase">Add Another Product</button>
         </div>
-    </form>
+    {% else %}
+        <h1 class="title">Add product</h1>
+
+        <form method="post" action="" enctype="multipart/form-data"> <!--enctype setting is required when dealing with images-->
+            {% csrf_token %} <!--ensures that only the user can edit their account settings-->
+
+            {{ form.as_p }} <!--displays form as a paragraph-->
+
+            <div class="field"> <!--creating the button to submit the form-->
+                <div class="control">
+                    <button class="button is-dark is-uppercase">Add Product</button>
+                </div>
+            </div>
+        </form>
+    {% endif %}
+    
 {% endblock %}

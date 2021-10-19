@@ -2,7 +2,9 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.text import slugify
+from django.urls import reverse
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from rest_framework import viewsets
 from .serializers import VendorSerializer
 
@@ -65,10 +67,12 @@ def add_product(request):
             product.slug = slugify(product.title)
             product.save()
 
-            return redirect('add_product',success=True) # return the user to the admin dashboard
+            # redirectUrl = reverse('add_product') + "?success=True"
+
+            return HttpResponseRedirect('/vendor/add-product?success=True') # return the user to the admin dashboard
     else: # if it hasn't been filled, create an empty form
         form = ProductForm()
-        if 'success' in request.GET:
+        if 'success' in request.GET: # if the product just got added, show a success page, toggled on by the 'success' variable
             success = True
     
     return render(request, 'vendor/add_product.html', {'form': form, 'success':success}) # render the empty form for the user to fill in

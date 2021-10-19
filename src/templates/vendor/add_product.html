@@ -3,10 +3,10 @@
 {% block title %}Add product | {% endblock %}
 
 {% block content %} 
-    {% if submitted %}
+    {% if success %}
         <h1>Submission Success</h1>
         <div class="control">
-            <button class="button is-dark is-uppercase">Add Another Product</button>
+            <a class="button is-dark is-uppercase" href="{% url 'add_product' %}">Add Another Product</a>
         </div>
     {% else %}
         <h1 class="title">Add product</h1>

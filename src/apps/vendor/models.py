@@ -42,6 +42,11 @@ class Vendor(models.Model):
         thumbnail = File(thumb_io, name=image.name) # turn the image object into a file
 
         return thumbnail
+    
+    def save(self, *args, **kwargs): # new
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 class Test(models.Model):
     test_data = models.CharField(max_length=255)

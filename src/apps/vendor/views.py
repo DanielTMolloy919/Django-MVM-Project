@@ -62,7 +62,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES) # put all the data collected into the form object
 
         if form.is_valid(): # if the user entry is valid then create the product
-            product = form.save(commit=False) # we havent specficied who the vendor is yet, so we need to set commit to False
+            product = form.save(commit=False) # we haven't specified who the vendor is yet, so we need to set commit to False
             product.vendor = request.user.vendor
             product.slug = slugify(product.title)
             product.save()

@@ -47,6 +47,3 @@ class Vendor(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
-
-class Test(models.Model):
-    test_data = models.CharField(max_length=255)

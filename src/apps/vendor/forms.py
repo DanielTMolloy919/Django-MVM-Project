@@ -1,8 +1,8 @@
 from django.forms import ModelForm
 
-from apps.product.models import Product
+from apps.repair.models import Repair
 
-class ProductForm(ModelForm): # display a form where the vendor can enter in the details of a product for sale
+class RepairForm(ModelForm): # display a form where the vendor can enter in the details of a repair for sale
     class Meta:
-        model = Product
-        fields = ['category', 'title', 'description', 'price']
+        model = Repair
+        fields = ['category', 'repair_type', 'description', 'price']

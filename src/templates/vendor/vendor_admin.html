@@ -10,12 +10,12 @@
     </div>
 
     <div class="box">
-        <h2 class="is-size-3 mb-4">My products</h2>
+        <h2 class="is-size-3 mb-4">My repairs</h2>
 
-        <a href="{% url 'add_product' %}" class="button is-dark is-uppercase mb-6">Add product</a>
+        <a href="{% url 'add_repair' %}" class="button is-dark is-uppercase mb-6">Add repair</a>
 
-        {% if products %} <!--if the user has any products-->
-            <table class="table is-fullwidth"> <!--generate a table of the users products-->
+        {% if repairs %} <!--if the user has any repairs-->
+            <table class="table is-fullwidth"> <!--generate a table of the users repairs-->
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -24,16 +24,16 @@
                 </thead>
 
                 <tbody>
-                    {% for product in products %} <!--loop through all the vendor's products-->
+                    {% for repair in repairs %} <!--loop through all the vendor's repairs-->
                         <tr>
-                            <td><a href="{% url 'product' product.category.slug product.slug %}">{{ product.title }}</a></td>
-                            <td>${{ product.price }}</td>
+                            <td><a href="{% url 'repair' repair.category.slug repair.slug %}">{{ repair.title }}</a></td>
+                            <td>${{ repair.price }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% else %}
-            <p>You don't have any product yet...</p>
+            <p>You don't have any repair yet...</p>
         {% endif %}
     </div>
 {% endblock %}

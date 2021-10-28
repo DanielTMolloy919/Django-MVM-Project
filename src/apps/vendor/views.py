@@ -9,9 +9,9 @@ from rest_framework import viewsets
 from .serializers import VendorSerializer
 
 from .models import Vendor # importing our vendors database 
-from apps.product.models import Product 
+from apps.repair.models import Repair 
 
-from .forms import ProductForm
+from .forms import RepairForm
 
 def become_vendor(request):
     if request.method == 'POST': # this checks whether the sign up form has been submitted 
@@ -33,21 +33,21 @@ def become_vendor(request):
 @login_required # this checks if the user has already logged in, if not the user will be redirected to the login page
 def vendor_admin(request): # code for the vendor interface
     vendor = request.user.vendor # loads the vendor object through the user model
-    products = vendor.products.all() # importing all the products associated with a vendor
+    repairs = vendor.repairs.all() # importing all the repairs associated with a vendor
 
-    return render(request, 'vendor/vendor_admin.html', {'vendor': vendor, 'products': products})
+    return render(request, 'vendor/vendor_admin.html', {'vendor': vendor, 'repairs': repairs})
 
 @login_required
 def edit_profile(request): # This allows a vendor to edit their profile objects, e.g. icon, thumbnail etc.
 
-    # if request.method == 'POST': # if the product entry form has already been submitted
+    # if request.method == 'POST': # if the repair entry form has already been submitted
     #     form = UserChangeForm(request.POST, request.FILES) # put all the data collected into the form object
 
-    #     if form.is_valid(): # if the user entry is valid then create the product
+    #     if form.is_valid(): # if the user entry is valid then create the repair
     #         profile = form.save
-    #         product.vendor = request.user.vendor
-    #         product.slug = slugify(product.title)
-    #         product.save()
+    #         repair.vendor = request.user.vendor
+    #         repair.slug = slugify(repair.title)
+    #         repair.save()
 
     #         return redirect('vendor_admin') # return the uesr to the admin dashboard
     # else: # if it hasn't been filled, create an empty form
@@ -56,26 +56,26 @@ def edit_profile(request): # This allows a vendor to edit their profile objects,
     return render(request, 'vendor/edit_profile.html',) # {'form': form}
 
 @login_required
-def add_product(request):
+def add_repair(request):
     success = False
-    if request.method == 'POST': # if the product entry form has already been submitted
-        form = ProductForm(request.POST, request.FILES) # put all the data collected into the form object
+    if request.method == 'POST': # if the repair entry form has already been submitted
+        form = RepairForm(request.POST, request.FILES) # put all the data collected into the form object
 
-        if form.is_valid(): # if the user entry is valid then create the product
-            product = form.save(commit=False) # we haven't specified who the vendor is yet, so we need to set commit to False
-            product.vendor = request.user.vendor
-            product.slug = slugify(product.title)
-            product.save()
+        if form.is_valid(): # if the user entry is valid then create the repair
+            repair = form.save(commit=False) # we haven't specified who the vendor is yet, so we need to set commit to False
+            repair.vendor = request.user.vendor
+            repair.slug = slugify(repair.title)
+            repair.save()
 
-            # redirectUrl = reverse('add_product') + "?success=True"
+            # redirectUrl = reverse('add_repair') + "?success=True"
 
-            return HttpResponseRedirect('/vendor/add-product?success=True') # return the user to the admin dashboard
+            return HttpResponseRedirect('/vendor/add-repair?success=True') # return the user to the admin dashboard
     else: # if it hasn't been filled, create an empty form
-        form = ProductForm()
-        if 'success' in request.GET: # if the product just got added, show a success page, toggled on by the 'success' variable
+        form = RepairForm()
+        if 'success' in request.GET: # if the repair just got added, show a success page, toggled on by the 'success' variable
             success = True
     
-    return render(request, 'vendor/add_product.html', {'form': form, 'success':success}) # render the empty form for the user to fill in
+    return render(request, 'vendor/add_repair.html', {'form': form, 'success':success}) # render the empty form for the user to fill in
 
 class VendorView(viewsets.ModelViewSet):
     serializer_class = VendorSerializer

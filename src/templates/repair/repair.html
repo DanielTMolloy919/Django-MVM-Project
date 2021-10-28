@@ -1,0 +1,32 @@
+{% extends 'core/base.html'%}
+
+{% block title %}{{ repair.title }} | {% endblock %}
+
+{% block content %}
+    {% if repair.image %} <!--If a repair image exists, display it at the top-->
+    <figure class="image is-4by3 mb-6">
+        <img src="{{ repair.image.url }}">
+    </figure>
+    {% endif %}
+
+    <h1 class="title">{{ repair.title }}, ${{ repair.price }}</h1>
+
+    <p class="mb-6"><span class="tag is-dark">{{ repair.vendor.name }}</span></p>
+
+    <p>{{ repair.description }}</p>
+
+    {% if similar_repairs %}
+        <hr>
+
+        <div class"columns is-multiline">
+            <div class="column is-12">
+                <h2 class="subtitle"> Similar repairs</h2>
+            </div>
+
+            {% for repair in similar_repairs %}
+                {% include 'repair/parts/list_item.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+

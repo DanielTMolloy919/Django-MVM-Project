@@ -1,15 +1,15 @@
 {% extends 'core/base.html'%}
 
-{% block title %}Add product | {% endblock %}
+{% block title %}Add repair | {% endblock %}
 
 {% block content %} 
     {% if success %}
         <h1>Submission Success</h1>
         <div class="control">
-            <a class="button is-dark is-uppercase" href="{% url 'add_product' %}">Add Another Product</a>
+            <a class="button is-dark is-uppercase" href="{% url 'add_repair' %}">Add Another Repair</a>
         </div>
     {% else %}
-        <h1 class="title">Add product</h1>
+        <h1 class="title">Add repair</h1>
 
         <form method="post" action="" enctype="multipart/form-data"> <!--enctype setting is required when dealing with images-->
             {% csrf_token %} <!--ensures that only the user can edit their account settings-->
@@ -18,7 +18,7 @@
 
             <div class="field"> <!--creating the button to submit the form-->
                 <div class="control">
-                    <button class="button is-dark is-uppercase">Add Product</button>
+                    <button class="button is-dark is-uppercase">Add Repair</button>
                 </div>
             </div>
         </form>

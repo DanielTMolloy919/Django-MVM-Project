@@ -1,0 +1,31 @@
+<div class="box">
+    {% comment %} <figure class="image is-4by3 mb-4">
+        <img src="{{ repair.get_thumbnail }}">
+    </figure> {% endcomment %}
+    <div class="columns">
+        <div class="column is-2">
+            <figure class="image is-1by1 mb-4">
+                <img src="{{ obj.vendor.get_thumbnail }}">
+            </figure>
+        </div>
+        <div class="column is-3">
+            <h2 class="subtitle">{{ obj.vendor }}</h2>
+        </div>
+        <div class="column">
+            Third column
+        </div>
+        <div class="column">
+            Fourth column
+        </div>
+        <div class="column">
+            Fifth column
+        </div>
+    </div>
+    
+
+    {% comment %} <h3 class="price is-size-6 mb-5">${{ obj.price }}</h3> {% endcomment %}
+
+    <hr>
+
+    {% comment %} <a href="{% url 'repair' repair.category.slug repair.slug %}" class="button is-dark is-uppercase">View</a> {% endcomment %}
+</div>

@@ -41,6 +41,9 @@ class Category(MPTTModel): # this is the device that is being repaired e.g. Gala
 class RepairType(models.Model): # This is the type of repair being done, e.g. screen repair
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255) # effectively a url
+
+    def __str__(self):
+        return self.name
     
 class Repair(models.Model): # This is the individual, purchasable repair
     category = models.ForeignKey(Category, related_name='repairs', on_delete=models.CASCADE) # inherit a single category
@@ -55,6 +58,6 @@ class Repair(models.Model): # This is the individual, purchasable repair
         ordering = ['-date_added']
     
     def __str__(self):
-        return 'category:%s vendor:%s type:%s' % (self.category, self.vendor, self.repair_type)
+        return self.vendor.name + " " + self.category.name + " " + self.repair_type.name
 
 

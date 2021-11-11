@@ -4,12 +4,14 @@ from django.db import models
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
+from django.utils.text import slugify
 
 class Vendor(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, default=slugify(name))
     display_name = models.CharField(max_length=255, default=name)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE) # linking venders to users, and making sure they get deleted when the users do
+    created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE,blank=True, null=True) # linking venders to users, and making sure they get deleted when the users do
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
     
@@ -43,7 +45,7 @@ class Vendor(models.Model):
 
         return thumbnail
     
-    def save(self, *args, **kwargs): # new
-        if not self.slug:
-            self.slug = slugify(self.title)
-        return super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs): # new
+    #     if not self.slug:
+    #         self.slug = slugify(self.title)
+    #     return super().save(*args, **kwargs)

@@ -1,28 +1,70 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base.html' %} 
 
-{% block title %}Search | {% endblock %}
+{% block title %}Search | {% endblock %} 
 
-{% block content %}
-    {% comment %} <div class="columns is-multiline mb-6">
-        <div class="column is-12 has-text-centered mt-6 mb-6">
-            <h2 class="is-size-3">Search</h2>
-            <h3>Search term: "{{ query }}"</h3>
+{% block content %} {% comment %}
+<div class="columns is-multiline mb-6">
+  <div class="column is-12 has-text-centered mt-6 mb-6">
+    <h2 class="is-size-3">Search</h2>
+    <h3>Search term: "{{ query }}"</h3>
+  </div>
+
+  {% for repair in repairs %} {% include 'repair/parts/list_item.html' %} {%
+  endfor %} {% endcomment %} {% comment %}
+  <form method="get">
+    {{ filter.form.as_p }}
+    <input type="submit" />
+  </form>
+  {% endcomment %}
+  <form action="." method="get">
+    <div class="field is-horizontal">
+      {% comment %} <div class="field-label is-normal">
+        <label class="label">From</label>
+      </div> {% endcomment %}
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" name="category" placeholder="Device" />
+            <span class="icon is-small is-left">
+              <span class="material-icons">smartphone</span>
+            </span>
+          </p>
         </div>
-
-        {% for repair in repairs %}
-            {% include 'repair/parts/list_item.html' %}
-        {% endfor %} {% endcomment %}
-    
-    <form method="get">
-        {{ filter.form.as_p }}
-        <input type="submit"/>
-    </form>
-    <div class="column is-12 repair-list-item">
-    {% for obj in filter.qs %}
-        {% comment %} {{obj.category }} - ${{ obj.price }} <br /> {% endcomment %}
-        {{obj.category }}
-        {% include 'repair/parts/list_item.html' %}
-    {% endfor %}
-    
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" name="repair_type" placeholder="Repair" />
+            <span class="icon is-small is-left">
+              <span class="material-icons">construction</span>
+            </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <input class="input" type="text" name="location" placeholder="Location" />
+            <span class="icon is-small is-left">
+              <span class="material-icons">place</span>
+            </span>
+          </p>
+        </div>
+      </div>
     </div>
-{% endblock %}
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-centered">
+          <div class="control">
+            <button class="button is-primary">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="column is-12 repair-list-item">
+    {% for repair in filter.qs %} {% comment %} {{obj.category }} - ${{ obj.price
+    }} <br />
+    {% endcomment %} {{repair.category }} {% include 'repair/parts/list_item.html'
+    %} {% endfor %}
+  </div>
+  {% endblock %}
+</div>

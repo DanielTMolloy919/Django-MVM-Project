@@ -7,3 +7,5 @@ frontend/*
 src/Ceberus/settings.py
 notes.md
 TODO.md
+src/static/sample_data/*
+src/media/uploads/*

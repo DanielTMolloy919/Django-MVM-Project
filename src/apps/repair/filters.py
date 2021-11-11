@@ -7,4 +7,4 @@ class RepairFilter(django_filters.FilterSet):   # FilterSet enables the automati
     
     class Meta:
         model = Repair # defines which model to use
-        fields = ['category','price'] # defines which model fields to use
+        fields = ['category','vendor','repair_type','price'] # defines which model fields to use

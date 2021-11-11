@@ -13,12 +13,6 @@ def search(request):
 
     return render(request, 'repair/search.html', {'filter': repairFilter})
     
-    # query = request.GET.get('repair', '')
-    
-    # repairs = Repair.objects.filter(Q(title__icontains=query) | Q(description__icontains=query)) # if either the description 
-
-    return render(request, 'repair/search.html', {})  
-
 def repair(request, category_slug, repair_slug):
     repair = get_object_or_404(Repair, category__slug=category_slug, slug=repair_slug)
 

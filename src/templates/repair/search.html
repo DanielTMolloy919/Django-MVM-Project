@@ -61,10 +61,9 @@
   </form>
 
   <div class="column is-12 repair-list-item">
-    {% for repair in filter.qs %} {% comment %} {{obj.category }} - ${{ obj.price
-    }} <br />
-    {% endcomment %} {{repair.category }} {% include 'repair/parts/list_item.html'
-    %} {% endfor %}
+    {% for repair in filter.qs %}
+    {% include 'repair/parts/list_item.html'%} 
+    {% endfor %}
   </div>
   {% endblock %}
 </div>

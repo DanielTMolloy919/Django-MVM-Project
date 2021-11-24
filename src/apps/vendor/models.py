@@ -35,11 +35,11 @@ class Vendor(models.Model):
     
     def make_thumbnail(self, image, size=(300, 200)): # generates a thumbnail from a given image
         img = Image.open(image) # create an image object
-        img.convert('RGB')
-        img.thumbnail(size) # using inbuilt thumbnail generator function
+        rgb_img = img.convert('RGB')
+        rgb_img.thumbnail(size) # using inbuilt thumbnail generator function
 
         thumb_io = BytesIO()
-        img.save(thumb_io, 'JPEG', quality=85) # save the image in JPEG format
+        rgb_img.save(thumb_io, 'JPEG', quality=85) # save the image in JPEG format
 
         thumbnail = File(thumb_io, name=image.name) # turn the image object into a file
 

@@ -55,9 +55,9 @@ class Command(BaseCommand):
             vendor_name = vendors[x]
             
             
-            file_name = str(x) + '.png'
+            file_name = str(x) + '.jpg'
             image_path = 'static/sample_data/' + file_name
-            image =  SimpleUploadedFile(name=file_name, content=open(image_path, 'rb').read(), content_type='image/png')
+            image =  SimpleUploadedFile(name=file_name, content=open(image_path, 'rb').read(), content_type='image/jpg')
 
             vendor = Vendor.objects.get_or_create(
                 name = vendor_name,

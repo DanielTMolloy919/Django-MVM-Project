@@ -10,12 +10,22 @@ from .filters import RepairFilter # import the filter for the search view
 def search(request):
     qs = Repair.objects.all()
 
-    category = request.GET.get('category')
-    repair_type = request.GET.get('repair_type')
-    
-    repairFilter = RepairFilter(request.GET, queryset=Repair.objects.all())
+    category_query = request.GET.get('category')
+    repair_type_query = request.GET.get('repair_type')
 
-    return render(request, 'repair/search.html', {'filter': repairFilter})
+    if category_query != '' and category_query is not None:
+        qs = qs.filter(category__name__icontains=category_query) # filter all objects by category name, case insensitive
+
+    if repair_type_query != '' and repair_type_query is not None:
+        qs = qs.filter(repair_type__name__icontains=repair_type_query)
+    
+    context = {
+        'queryset': qs,
+        'category_query': category_query,
+        'repair_type_query': repair_type_query
+    }
+
+    return render(request, 'repair/search.html', context)
     
 def repair(request, category_slug, repair_slug):
     repair = get_object_or_404(Repair, category__slug=category_slug, slug=repair_slug)

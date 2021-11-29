@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
 
 {% comment %} Connecting to Google's Map API {% endcomment %}
 
@@ -23,34 +24,42 @@
 {% comment %} Gets the Maps API Javascript and points to the initAutocomplete function defined above {% endcomment %}
 {% comment %} <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNEeNfnejMFeUSzOWbc25EwrfdCDXIeqg&libraries=places&callback=initAutocomplete"></script> {% endcomment %}
 
-<form method="POST" action="{% url 'search' %}">{% csrf_token %}
-    <div class="field has-addons">
-        <p class="control is-expanded has-icons-left">
-            <input id="device" class="input" type="text" placeholder="iPhone 8">
-            <span class="icon is-small is-left">
-                <span class="material-icons">smartphone</span>
-            </span>
-        </p>
-        <p class="control is-expanded has-icons-left">
-            <input id="repair" class="input" type="text" placeholder="Cracked Screen">
-            <span class="icon is-small is-left">
-                <span class="material-icons">construction</span>
-            </span>
-        </p>
-        <p class="control is-expanded has-icons-left">
-            <input id="autocomplete" class="input" type="text" placeholder="Mayfield 2304">
-            <span class="icon is-small is-left">
-                <span class="material-icons">place</span>
-            </span>
-        </p>
-        <p class="control">
-            <button class="button is-primary-color-dark">
-                <span class="material-icons">search</span>
-            </button> <!---->
-        </p>
-    </div>
-</form>
-
+<div class="card-image has-text-centered">
+    <figure class="image is-128x128 is-inline-block">
+        <img src="{% static 'branding/logo_small.png' %}">
+    </figure>
+</div>
+<h2 class="title is-2 has-text-centered mt-6 mb-5">Welcome to Australia's Largest Directory of Tech Repairs</h2>
+<h3 class="subtitle is-3 has-text-centered mb-6">Search Below to Find the Best Deal Near You</h3>
+<div class="mb-5">
+    <form method="POST" action="{% url 'search' %}">{% csrf_token %}
+        <div class="field has-addons">
+            <p class="control is-expanded has-icons-left">
+                <input id="device" class="input" type="text" placeholder="iPhone 8">
+                <span class="icon is-small is-left">
+                    <span class="material-icons">smartphone</span>
+                </span>
+            </p>
+            <p class="control is-expanded has-icons-left">
+                <input id="repair" class="input" type="text" placeholder="Cracked Screen">
+                <span class="icon is-small is-left">
+                    <span class="material-icons">construction</span>
+                </span>
+            </p>
+            <p class="control is-expanded has-icons-left">
+                <input id="autocomplete" class="input" type="text" placeholder="Mayfield 2304">
+                <span class="icon is-small is-left">
+                    <span class="material-icons">place</span>
+                </span>
+            </p>
+            <p class="control">
+                <button class="button is-primary-color-dark">
+                    <span class="material-icons">search</span>
+                </button> <!---->
+            </p>
+        </div>
+    </form>
+</div>
     {% for repair in newest_repairs %}
         {% include 'repair/parts/list_item.html' %}
     {% endfor %}

@@ -24,7 +24,7 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" name="category" placeholder="Device" />
+            <input class="input" type="text" name="category" placeholder="Device" value="{{ category_query }}"/>
             <span class="icon is-small is-left">
               <span class="material-icons">smartphone</span>
             </span>
@@ -32,7 +32,7 @@
         </div>
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" name="repair_type" placeholder="Repair" />
+            <input class="input" type="text" name="repair_type" placeholder="Repair" value="{{ repair_type_query }}"/>
             <span class="icon is-small is-left">
               <span class="material-icons">construction</span>
             </span>
@@ -61,7 +61,7 @@
   </form>
 
   <div class="column is-12 repair-list-item">
-    {% for repair in filter.qs %}
+    {% for repair in queryset %}
     {% include 'repair/parts/list_item.html'%} 
     {% endfor %}
   </div>

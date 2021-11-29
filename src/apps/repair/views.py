@@ -8,6 +8,10 @@ from .models import Category, Repair
 from .filters import RepairFilter # import the filter for the search view
 
 def search(request):
+    qs = Repair.objects.all()
+
+    category = request.GET.get('category')
+    repair_type = request.GET.get('repair_type')
     
     repairFilter = RepairFilter(request.GET, queryset=Repair.objects.all())
 

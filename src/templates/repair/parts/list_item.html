@@ -2,23 +2,29 @@
     {% comment %} <figure class="image is-4by3 mb-4">
         <img src="{{ repair.get_thumbnail }}">
     </figure> {% endcomment %}
-    <div class="columns">
+    <div class="columns is-multiline is-centered is-vcentered">
         <div class="column is-2">
-            <figure class="image is-1by1 mb-4">
+            <figure class="image is-rounded is-1by1 mb-4">
                 <img src="{{ repair.vendor.get_thumbnail }}">
             </figure>
         </div>
         <div class="column is-3">
-            <h2 class="subtitle">{{ repair.vendor.name }}</h2>
+            <h2 class="title">{{ repair.vendor.name }}</h2>
         </div>
         <div class="column">
-            Third column
+            Not Yet Rated
         </div>
         <div class="column">
-            <h2 class="subtitle">${{ repair.price }}</h2>
+            <h2 class="subtitle">~${{ repair.price }}</h2>
+            <p class="subtitle is-6">For a {{ repair.repair_type.name }} of a {{ repair.category.name }}</p>
         </div>
         <div class="column">
-            <button class="button is-link">Link</button>
+            <button class="button is-link">
+            <span>Link</span>
+            <span class="icon is-small">
+            <span class="material-icons">open_in_new</span>
+            </span>
+            </button>
         </div>
     </div>
     

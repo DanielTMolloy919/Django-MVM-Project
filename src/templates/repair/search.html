@@ -23,28 +23,47 @@
       </div> {% endcomment %}
       <div class="field-body">
         <div class="field">
+          <label class="label">Device</label>
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" name="category" placeholder="Device" value="{{ category_query }}"/>
+            <input class="input" type="text" name="category" placeholder="iPhone 13 Pro" value="{{ category_query }}"/>
             <span class="icon is-small is-left">
               <span class="material-icons">smartphone</span>
             </span>
           </p>
         </div>
         <div class="field">
+          <label class="label">Repair</label>
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" name="repair_type" placeholder="Repair" value="{{ repair_type_query }}"/>
+            <input class="input" type="text" name="repair_type" placeholder="Screen Replacement" value="{{ repair_type_query }}"/>
             <span class="icon is-small is-left">
               <span class="material-icons">construction</span>
             </span>
           </p>
         </div>
         <div class="field">
+          <label class="label">Location</label>
           <p class="control is-expanded has-icons-left">
-            <input class="input" type="text" name="location" placeholder="Location" />
+            <input class="input" type="text" name="location" placeholder="Bondi, NSW 2304" />
             <span class="icon is-small is-left">
               <span class="material-icons">place</span>
             </span>
           </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Sort By</label>
+      <div class="control">
+        <div class="select">
+          <select name="sort_by">
+            {% for key, value in sort_list.items %}
+            <option value="{{ key }}"
+            {% if key == sort_by_query %}selected="selected"{% endif %}>
+            {{ value }}
+            </option>
+            {% endfor %}
+          </select>
         </div>
       </div>
     </div>

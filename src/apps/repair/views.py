@@ -7,22 +7,48 @@ from .models import Category, Repair
 
 from .filters import RepairFilter # import the filter for the search view
 
+def is_valid_query(query): # checks that a query actually contains data
+    valid_bool = query != '' and query is not None
+    return valid_bool
+
 def search(request):
     qs = Repair.objects.all()
 
     category_query = request.GET.get('category')
     repair_type_query = request.GET.get('repair_type')
+    location_query = request.GET.get('location')
 
-    if category_query != '' and category_query is not None:
-        qs = qs.filter(category__name__icontains=category_query) # filter all objects by category name, case insensitive
+    sort_by_query = request.GET.get('sort_by')
 
-    if repair_type_query != '' and repair_type_query is not None:
+    if is_valid_query(category_query): # filter based on category search
+        qs = qs.filter(category__name__icontains=category_query) 
+    else:
+        category_query = ""
+
+    if is_valid_query(repair_type_query): #filter based on repair type
         qs = qs.filter(repair_type__name__icontains=repair_type_query)
-    
+    else:
+        repair_type_query = ""
+        
+    if is_valid_query(sort_by_query):
+        #if sort_by_query == ""
+        print(sort_by_query)
+    else:
+        sort_by_query = ""
+
+    sort_list = {
+        'best':'Best',
+        'highest_rated':'Highest Rated',
+        'cheapest':'Cheapest'
+    }
+        
+
     context = {
         'queryset': qs,
         'category_query': category_query,
-        'repair_type_query': repair_type_query
+        'repair_type_query': repair_type_query,
+        'sort_by_query': sort_by_query,
+        'sort_list': sort_list
     }
 
     return render(request, 'repair/search.html', context)

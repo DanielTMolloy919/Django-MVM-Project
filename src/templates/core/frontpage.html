@@ -32,22 +32,22 @@
 <h2 class="title is-2 has-text-centered mt-6 mb-5">Welcome to Australia's Largest Directory of Tech Repairs</h2>
 <h3 class="subtitle is-3 has-text-centered mb-6">Search Below to Find the Best Deal Near You</h3>
 <div class="mb-5">
-    <form method="POST" action="{% url 'search' %}">{% csrf_token %}
+    <form method="get" action="{% url 'search' %}">
         <div class="field has-addons">
             <p class="control is-expanded has-icons-left">
-                <input id="device" class="input" type="text" placeholder="iPhone 8">
+                <input id="device" name="category" class="input" type="text" placeholder="iPhone 8">
                 <span class="icon is-small is-left">
                     <span class="material-icons">smartphone</span>
                 </span>
             </p>
             <p class="control is-expanded has-icons-left">
-                <input id="repair" class="input" type="text" placeholder="Cracked Screen">
+                <input id="repair" name="repair_type" class="input" type="text" placeholder="Cracked Screen">
                 <span class="icon is-small is-left">
                     <span class="material-icons">construction</span>
                 </span>
             </p>
             <p class="control is-expanded has-icons-left">
-                <input id="autocomplete" class="input" type="text" placeholder="Mayfield 2304">
+                <input id="autocomplete" name="location" class="input" type="text" placeholder="Mayfield 2304">
                 <span class="icon is-small is-left">
                     <span class="material-icons">place</span>
                 </span>

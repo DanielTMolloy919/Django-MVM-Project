@@ -31,17 +31,16 @@ def search(request):
         repair_type_query = ""
         
     if is_valid_query(sort_by_query):
-        #if sort_by_query == ""
-        print(sort_by_query)
+        if sort_by_query == "cheapest":
+            qs = qs.order_by('price')
     else:
         sort_by_query = ""
 
-    sort_list = {
+    sort_list = { # a dictionary of different ways the results can be sorted
         'best':'Best',
         'highest_rated':'Highest Rated',
         'cheapest':'Cheapest'
     }
-        
 
     context = {
         'queryset': qs,

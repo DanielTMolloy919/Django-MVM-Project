@@ -4,7 +4,7 @@
     </figure> {% endcomment %}
     <div class="columns is-multiline is-centered is-vcentered">
         <div class="column is-2">
-            <figure class="image is-rounded is-1by1 mb-4">
+            <figure class="image is-rounded is-1by1">
                 <img src="{{ repair.vendor.get_thumbnail }}">
             </figure>
         </div>
@@ -12,14 +12,16 @@
             <h2 class="title">{{ repair.vendor.name }}</h2>
         </div>
         <div class="column">
-            Not Yet Rated
+            <svg viewBox="0 0 49.554 8.939"  width="140" height="18">
+                <use xlink:href="#star_4.5"/>
+            </svg>
         </div>
-        <div class="column">
+        <div class="column is-3">
             <h2 class="subtitle">~${{ repair.price }}</h2>
             <p class="subtitle is-6">For a {{ repair.repair_type.name }} of a {{ repair.category.name }}</p>
         </div>
         <div class="column">
-            <button class="button is-link">
+            <button class="button is-primary-color-dark">
             <span>Link</span>
             <span class="icon is-small">
             <span class="material-icons">open_in_new</span>
@@ -33,3 +35,5 @@
 
     {% comment %} <a href="{% url 'repair' repair.category.slug repair.slug %}" class="button is-dark is-uppercase">View</a> {% endcomment %}
 </div>
+
+{% include 'repair/svg_library.html' %}

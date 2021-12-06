@@ -10,6 +10,20 @@
   flex-shrink: 0;
   flex-direction: row; }
 
+.scaling-svg-container {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 100%; }
+
+.scaling-svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0; }
+
 /*! bulma.io v0.9.2 | MIT License | github.com/jgthms/bulma */
 /* Bulma Utilities */
 .button, .input, .textarea, .select select, .file-cta,

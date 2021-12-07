@@ -45,6 +45,12 @@ def generate_date_added():
     day = random.randint(1,28)
     return datetime.date(year,month,day)
 
+def generate_rating():
+    return random.uniform(0, 5)
+
+def generate_review_count():
+    return random.randint(0,10000)
+
 def load_image():
     index = random.randint(0,4)
 
@@ -59,10 +65,15 @@ class Command(BaseCommand):
             image_path = 'static/sample_data/' + file_name
             image =  SimpleUploadedFile(name=file_name, content=open(image_path, 'rb').read(), content_type='image/jpg')
 
+            g_rating = generate_rating()
+            g_review_count = generate_review_count()
+            
             vendor = Vendor.objects.get_or_create(
                 name = vendor_name,
                 # created_at = generate_date_added,
                 image = image,
+                g_rating = g_rating,
+                g_review_count = g_review_count
             )
 
             for y in range(5): # for each vendor, generate all the device categories
@@ -89,6 +100,7 @@ class Command(BaseCommand):
                         vendor = Vendor.objects.get(name = vendor_name),
                         repair_type = RepairType.objects.get(name = type_name),
                         price = price,
+
                         # date_added = date_added
                     )
 

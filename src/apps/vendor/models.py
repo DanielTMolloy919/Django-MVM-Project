@@ -14,6 +14,9 @@ class Vendor(models.Model):
     created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE,blank=True, null=True) # linking venders to users, and making sure they get deleted when the users do
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+
+    g_rating = models.FloatField(default=None, blank=True, null=True)
+    g_review_count = models.IntegerField(default=0)
     
     class Meta: # this allows us to order by name
         ordering = ['name']

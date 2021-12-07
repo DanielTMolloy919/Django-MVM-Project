@@ -56,6 +56,16 @@ class Repair(models.Model): # This is the individual, purchasable repair
 
     class Meta:
         ordering = ['-date_added']
+
+    def get_rating(self):
+        return round(self.vendor.g_rating,1)
+
+    def get_star_rating(self):
+        rounded_rating = round(self.vendor.g_rating * 2) / 2
+        return "star_" + str(rounded_rating)
+
+    def get_review_count(self):
+        return self.vendor.g_review_count
     
     def __str__(self):
         return self.vendor.name + " " + self.category.name + " " + self.repair_type.name

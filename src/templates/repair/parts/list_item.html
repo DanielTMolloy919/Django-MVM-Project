@@ -12,18 +12,18 @@
             <h2 class="title">{{ repair.vendor.name }}</h2>
         </div>
         <div class="column">
-            <p class="subtitle is-6">{{ repair.get_rating }}</p>
-            <svg viewBox="0 0 49.554 8.939"  width="140" height="18">
+            <span class="has-text-link">{{ repair.get_rating }}</span>
+            <svg viewBox="0 0 49.554 8.939"  width="100" height="18">
                 <use xlink:href="#{{ repair.get_star_rating }}"/>
             </svg>
-            <p class="subtitle is-6">{{ repair.get_review_count }} Reviews</p>
+            <p class="subtitle is-6 has-text-link">{{ repair.get_review_count }} Reviews</p>
         </div>
         <div class="column is-3">
             <h2 class="subtitle">~${{ repair.price }}</h2>
             <p class="subtitle is-6">For a {{ repair.repair_type.name }} of a {{ repair.category.name }}</p>
         </div>
         <div class="column">
-            <button class="button is-primary-color-dark">
+            <button class="button is-button-alt-1">
             <span>Link</span>
             <span class="icon is-small">
             <span class="material-icons">open_in_new</span>

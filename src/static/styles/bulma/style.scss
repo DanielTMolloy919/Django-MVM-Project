@@ -8,6 +8,9 @@ $primary-color: #3B3355;
 $primary-color-light: #b1acb8;
 $primary-color-dark: 	#231f33;
 $beige-lighter: #EFF0EB;
+$link: #007185;
+$flame-red: #E4572E;
+$selective-yellow: #FCBA04;
 
 // @import "node_modules/bulma/sass/utilities/derived-variables";
 
@@ -25,6 +28,8 @@ $custom-colors: (
   "primary-color": $primary-color,
   "primary-color-light": $primary-color-light,
   "primary-color-dark": $primary-color-dark,
+  "link": $link,
+  "button-alt-1": $selective-yellow
 );
 
 .navbar {

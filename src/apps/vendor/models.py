@@ -4,6 +4,7 @@ from django.db import models
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
+from django.http.response import Http404
 from django.utils.text import slugify
 
 class Vendor(models.Model):
@@ -14,6 +15,7 @@ class Vendor(models.Model):
     created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE,blank=True, null=True) # linking venders to users, and making sure they get deleted when the users do
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    link = models.URLField(blank=True, null=True)
 
     g_rating = models.FloatField(default=None, blank=True, null=True)
     g_review_count = models.IntegerField(default=0)

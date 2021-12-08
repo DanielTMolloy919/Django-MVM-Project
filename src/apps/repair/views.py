@@ -33,6 +33,8 @@ def search(request):
     if is_valid_query(sort_by_query):
         if sort_by_query == "cheapest":
             qs = qs.order_by('price')
+        elif sort_by_query == "highest_rated":
+            qs = qs.order_by('-vendor__g_rating')
     else:
         sort_by_query = ""
 

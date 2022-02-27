@@ -9,3 +9,4 @@ notes.md
 TODO.md
 src/static/sample_data/*
 src/media/uploads/*
+__pycache__/

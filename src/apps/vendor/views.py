@@ -5,8 +5,8 @@ from django.utils.text import slugify
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from rest_framework import viewsets
-from .serializers import VendorSerializer
+# from rest_framework import viewsets
+# from .serializers import VendorSerializer
 
 from .models import Vendor # importing our vendors database 
 from apps.repair.models import Repair 
@@ -77,6 +77,6 @@ def add_repair(request):
     
     return render(request, 'vendor/add_repair.html', {'form': form, 'success':success}) # render the empty form for the user to fill in
 
-class VendorView(viewsets.ModelViewSet):
-    serializer_class = VendorSerializer
-    queryset = Vendor.objects.all()
+# class VendorView(viewsets.ModelViewSet):
+#     serializer_class = VendorSerializer
+#     queryset = Vendor.objects.all()

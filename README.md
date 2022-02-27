@@ -11,3 +11,29 @@ This is a personal Django web project that is still being developed. The aim is 
 - Web Sockets
 - Geolocation
 - Payment APIs
+
+### Setup
+
+- Setup python environment `python3 -m venv env`
+- Run environment `source env/bin/activate`
+- Install packages `pip3 install -r requirements.txt`
+
+### Run
+
+- `python3 manage.py run`
+
+### Migrate New Models
+
+1. run `python manage.py makemigrations`
+2. run `python manage.py migrate`
+
+### Django Admin
+
+https://youtu.be/PD3YnPSHC-c
+
+1. In the src folder run `python manage.py shell`
+2. Import your desired model e.g. `from apps.vendor.models import Vendor` `from apps.product.models import Product`
+3. Useful commands
+   - Retrieve all objects `Product.objects.all()`
+   - Delete one object `Product.objects.filter(title='test').delete()`
+   - Print object attribute `Product.objects.filter(title='test').vendor`

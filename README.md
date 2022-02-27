@@ -22,6 +22,12 @@ This is a personal Django web project that is still being developed. The aim is 
 
 - `python3 manage.py run`
 
+### Run Docker
+
+- `docker-compose up`
+
+## Other Functions
+
 ### Migrate New Models
 
 1. run `python manage.py makemigrations`

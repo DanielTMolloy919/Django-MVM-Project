@@ -10,4 +10,5 @@ notes.md
 TODO.md
 src/static/sample_data/*
 src/media/uploads/*
+migrations/*
 __pycache__/

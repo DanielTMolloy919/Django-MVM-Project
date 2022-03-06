@@ -1,25 +1,103 @@
-{% extends 'core/base.html'%}
+{% extends 'core/base.html'%} 
 
-{% block title %}Become vendor | {% endblock %}
 
-{% block content %} 
-    <h1 class="title">Become vendor</h1>
+{% block title%}Become vendor | {% endblock %} 
 
-    <form method="post" action"."> <!--accesses the form created in the views file-->
-        {% csrf_token %} <!--ensures that only the user can edit their account settings-->
+{% block content %}
+<div class="container is-max-desktop">
+<h1 class="title centered">Create an Account</h1>
 
-        {{ form.as_p }} <!--displays form as a paragraph-->
 
-        <div class="field"> <!--creating the button to submit the form-->
-            <div class="control">
-                <button class="button is-dark is-uppercase">Sign up</button>
-            </div>
-        </div>
-    </form>
+<form method="post">
+  {% csrf_token %}
 
-    <hr>
+  {% comment %} {{ form.errors }} {% endcomment %}
+  <div class="field">
+    <label class="label" id="username">Your Name</label>
+    <p class="control has-icons-left has-icons-right">
+      <input class="input">
+      <span class="icon is-small is-left">
+        <span class="material-icons">person</span>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </p>
+    {% if form.username.errors %}
+      {% for error in form.username.errors %}
+        <p class="help is-danger">{{ error|escape }}</p>
+      {% endfor %}
+    {% endif %}
+    
+  </div>
+<div class="field">
+  <label class="label" id="email">Email</label>
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="email">
+    <span class="icon is-small is-left">
+      <span class="material-icons">email</span>
+    </span>
+    <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+  </p>
+  {% if form.email.errors %}
+    {% for error in form.email.errors %}
+      <p class="help is-danger">{{ error|escape }}</p>
+    {% endfor %}
+  {% endif %}
 
-    <h2 class="subtitle">Already have an account?</h2>
+</div>
+<div class="field">
+  <label class="label" id="password1">Password</label>
+  <p class="control has-icons-left">
+    <input class="input" type="password">
+    <span class="icon is-small is-left">
+      <span class="material-icons">lock</span>
+    </span>
+  </p>
+  {% if form.password1.errors %}
+    {% for error in form.password1.errors %}
+      <p class="help is-danger">{{ error|escape }}</p>
+    {% endfor %}
+  {% endif %}
+</div>
+<div class="field">
+  <label class="label" id="password2">Re-enter Password</label>
+  <p class="control has-icons-left">
+    <input class="input" type="password">
+    <span class="icon is-small is-left">
+      <span class="material-icons">lock</span>
+    </span>
+  </p>
+  {% if form.password2.errors %}
+    {% for error in form.password2.errors %}
+      <p class="help is-danger">{{ error|escape }}</p>
+    {% endfor %}
+  {% endif %}
+</div>
+<div class="field">
+  <p class="control">
+    <button class="button is-success">
+      Sign up
+    </button>
+  </p>
+</div>
 
-    <a href="{% url 'login' %}">Log in </a>
+  
+
+  {% comment %} <div class="field">   
+    <div class="control">
+      <button type="submit" class="button is-dark is-uppercase">Sign up</button>
+    </div>
+  </div> {% endcomment %}
+</form>
+
+<hr />
+
+<h2 class="subtitle">Already have an account?</h2>
+
+<a href="{% url 'login' %}">Log in </a>
+
+</div>
 {% endblock %}

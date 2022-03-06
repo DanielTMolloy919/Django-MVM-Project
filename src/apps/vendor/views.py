@@ -5,17 +5,15 @@ from django.utils.text import slugify
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-# from rest_framework import viewsets
-# from .serializers import VendorSerializer
 
 from .models import Vendor # importing our vendors database 
 from apps.repair.models import Repair 
 
-from .forms import RepairForm
+from .forms import BecomeVendorForm, RepairForm
 
 def become_vendor(request):
     if request.method == 'POST': # this checks whether the sign up form has been submitted 
-        form = UserCreationForm(request.POST) # pushing all the data we just collected into an object called 'form'
+        form = BecomeVendorForm(request.POST) # pushing all the data we just collected into an object called 'form'
 
         if form.is_valid(): # executes if the user entered their data correctly
             user = form.save() # saves collected data to a new user object

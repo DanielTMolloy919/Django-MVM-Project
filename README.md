@@ -31,6 +31,8 @@ https://stackpython.medium.com/how-to-start-django-project-with-a-database-postg
 
 https://forum.chirpstack.io/t/chirpstack-docker-image-cant-connect-to-postgres/10183/5
 
+https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c1f76711e1
+
 ### Run
 
 - `python3 manage.py run`

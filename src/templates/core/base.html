@@ -29,7 +29,7 @@ debugger;
         {% comment %} {% include 'core/navbar.html' %} {% endcomment %}
         <nav class="navbar is-primary-color" role="nagivation">
             <div class="navbar-brand">
-                {% comment %} <a href="/" class="navbar-item"><strong>Ceberus</strong></a> {% endcomment %}
+                <a href="/" class="navbar-item"><strong>Ceberus</strong></a>
                 
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
@@ -63,16 +63,13 @@ debugger;
                     </div>
                 </div> {% endcomment %}
                 <div class="navbar-end">
-                    {% comment %} {% for category in menu_categories %}
-                        <a href="{% url 'category' category.slug %}" class="navbar-item">{{ category.title }}</a>
-                    {% endfor %}
-                    <a href="{% url 'contact' %}" class="navbar-item">Contact</a>  {% endcomment %}
                     <div class="navbar-item">
                         <div class="buttons">
                             {% if request.user.is_authenticated %} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
                                 <a class="button is-rounded" href="{% url 'edit_profile' %}" >Edit Profile</a>
                                 <a class="button is-rounded" href="{% url 'logout' %}">Logout</a>
                             {% else %} <!--otherwise link to becoming a vendor-->
+                            <a class="button is-rounded" href="{% url 'become_vendor' %}">Sign Up</a>
                                 <a class="button is-rounded" href="{% url 'login' %}">Login</a>
                             {% endif %}
                         </div>

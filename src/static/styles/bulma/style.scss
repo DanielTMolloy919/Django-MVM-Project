@@ -34,7 +34,7 @@ $spacing-values: (
   "8": 4rem,
 );
 
-$container-max-width: 800px;
+// $container-max-width: px;
 
 $custom-colors: (
   "primary-color": $primary-color,
@@ -53,6 +53,10 @@ $body-background-color: $beige-lighter;
 // .field.has-addons {
 //   background-color: aqua
 // }
+
+.signup-page {
+  max-width: 600px !important;
+}
 
 .navbar-center {
   display: flex;
@@ -76,6 +80,10 @@ $body-background-color: $beige-lighter;
   width: 100%;
   left: 0;
   top: 0;
+}
+
+.sized-down-page {
+  max-width: 800px;
 }
 
 @import "node_modules/bulma/bulma";

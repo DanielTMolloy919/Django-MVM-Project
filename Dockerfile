@@ -5,4 +5,6 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /src
 COPY requirements.txt /src/
 RUN pip install -r requirements.txt
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "vim"]
 COPY ./src /src/

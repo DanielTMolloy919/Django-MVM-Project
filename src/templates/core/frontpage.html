@@ -8,6 +8,8 @@
 
 {% block content %}
 
+<div class="container">
+
 <script>
     let autocomplete
     {% comment %} add google places functionality to address autocomplete, narrowing down results {% endcomment %}
@@ -63,6 +65,7 @@
     {% for repair in newest_repairs %}
         {% include 'repair/parts/list_item.html' %}
     {% endfor %}
+</div>
 </div>
 
 {% endblock %}

@@ -43,6 +43,10 @@ https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c
 
 ## Other Functions
 
+### Monitor for Changes in SCSS
+
+- `cd src/static/styles/bulma && npm start`
+
 ### Postgres Shell
 
 `psql -U postgres`

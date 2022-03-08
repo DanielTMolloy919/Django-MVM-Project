@@ -23,6 +23,7 @@ def become_vendor(request):
             vendor = Vendor.objects.create(name=user.username, created_by=user) # copies over the collected data to create a vendor object
 
             return redirect('frontpage') # pushes the user back to the front page
+            
     else:
         form = UserCreationForm() # creates an empty form
 

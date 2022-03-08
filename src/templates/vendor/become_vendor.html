@@ -11,11 +11,11 @@
 <form method="post">
   {% csrf_token %}
 
-  {% comment %} {{ form.errors }} {% endcomment %}
+  {{ form.errors }}
   <div class="field">
-    <label class="label" id="username">Your Name</label>
+    <label class="label" for="id_username">Your Name</label>
     <p class="control has-icons-left has-icons-right">
-      <input class="input">
+      {{ form.username }}
       <span class="icon is-small is-left">
         <span class="material-icons">person</span>
       </span>
@@ -23,17 +23,17 @@
         <i class="fas fa-check"></i>
       </span>
     </p>
-    {% if form.username.errors %}
+    {% comment %} {% if form.username.errors %}
       {% for error in form.username.errors %}
         <p class="help is-danger">{{ error|escape }}</p>
       {% endfor %}
-    {% endif %}
+    {% endif %} {% endcomment %}
     
   </div>
 <div class="field">
-  <label class="label" id="email">Email</label>
+  <label class="label" for="id_email">Email</label>
   <p class="control has-icons-left has-icons-right">
-    <input class="input" type="email">
+    {{ form.email }}
     <span class="icon is-small is-left">
       <span class="material-icons">email</span>
     </span>
@@ -41,40 +41,40 @@
       <i class="fas fa-check"></i>
     </span>
   </p>
-  {% if form.email.errors %}
+  {% comment %} {% if form.email.errors %}
     {% for error in form.email.errors %}
       <p class="help is-danger">{{ error|escape }}</p>
     {% endfor %}
-  {% endif %}
+  {% endif %} {% endcomment %}
 
 </div>
 <div class="field">
-  <label class="label" id="password1">Password</label>
+  <label class="label" for="id_password1">Password</label>
   <p class="control has-icons-left">
-    <input class="input" type="password">
+    {{ form.password1 }}
     <span class="icon is-small is-left">
       <span class="material-icons">lock</span>
     </span>
   </p>
-  {% if form.password1.errors %}
+  {% comment %} {% if form.password1.errors %}
     {% for error in form.password1.errors %}
       <p class="help is-danger">{{ error|escape }}</p>
     {% endfor %}
-  {% endif %}
+  {% endif %} {% endcomment %}
 </div>
 <div class="field">
-  <label class="label" id="password2">Re-enter Password</label>
+  <label class="label" for="id_password2">Re-enter Password</label>
   <p class="control has-icons-left">
-    <input class="input" type="password">
+    {{ form.password2 }}
     <span class="icon is-small is-left">
       <span class="material-icons">lock</span>
     </span>
   </p>
-  {% if form.password2.errors %}
+  {% comment %} {% if form.password2.errors %}
     {% for error in form.password2.errors %}
       <p class="help is-danger">{{ error|escape }}</p>
     {% endfor %}
-  {% endif %}
+  {% endif %} {% endcomment %}
 </div>
 <div class="field">
   <p class="control">

@@ -41,6 +41,11 @@ https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c
 
 - `docker-compose up`
 
+#### Enter Container from Terminal
+
+- `docker exec -it django-mvm-project-web-1 /bin/bash`
+- `docker exec -it django-mvm-project-db-1 /bin/bash`
+
 ## Other Functions
 
 ### Monitor for Changes in SCSS
@@ -79,3 +84,22 @@ https://youtu.be/PD3YnPSHC-c
    - Retrieve all objects `Product.objects.all()`
    - Delete one object `Product.objects.filter(title='test').delete()`
    - Print object attribute `Product.objects.filter(title='test').vendor`
+
+### Refresh Database
+
+**WHATEVER YOU DO DON'T DO THIS!!!**
+
+1. Reset postgres database
+   - `psql -U postgres`
+   - `drop database "ceberus-db";`
+   - `create database "ceberus-db" with owner admin;`
+2. `docker-compose build`
+3. Remove all migration files
+4. `docker-compose up`
+5. If errors, comment out `django.contrib.admin` in settings.py under installed apps
+6. Add migrations - inside the docker web container
+   - `python manage.py makemigrations core`
+   - If had error, uncomment admin
+   - `python manage.py migrate`
+   - `python manage.py makemigrations`
+   - `python manage.py migrate`

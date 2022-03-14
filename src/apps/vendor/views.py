@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.text import slugify
 from django.urls import reverse
 from django.shortcuts import render, redirect
@@ -9,23 +9,24 @@ from django.http import HttpResponseRedirect
 from .models import Vendor # importing our vendors database 
 from apps.repair.models import Repair 
 
-from .forms import BecomeVendorForm, RepairForm
+from .forms import RepairForm
+from apps.core.forms import RegisterForm
 
 def become_vendor(request):
     if request.method == 'POST': # this checks whether the sign up form has been submitted 
-        form = BecomeVendorForm(request.POST) # pushing all the data we just collected into an object called 'form'
+        form = RegisterForm(request.POST) # pushing all the data we just collected into an object called 'form'
 
         if form.is_valid(): # executes if the user entered their data correctly
             user = form.save() # saves collected data to a new user object
 
             login(request, user) # logs in the newly created user
 
-            vendor = Vendor.objects.create(name=user.username, created_by=user) # copies over the collected data to create a vendor object
+            vendor = Vendor.objects.create(email=user.username, created_by=user) # copies over the collected data to create a vendor object
 
             return redirect('frontpage') # pushes the user back to the front page
             
     else:
-        form = UserCreationForm() # creates an empty form
+        form = RegisterForm() # creates an empty form
 
     return render(request, 'vendor/become_vendor.html', {'form': form}) # make the form accessible by the front end html
 

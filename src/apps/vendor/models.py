@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.auth.models import User
 
 from io import BytesIO
 from PIL import Image
@@ -7,12 +7,13 @@ from django.core.files import File
 from django.http.response import Http404
 from django.utils.text import slugify
 
+from apps.core.models import User
+
 class Vendor(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, default=slugify(name))
-    display_name = models.CharField(max_length=255, default=name)
+    email = models.EmailField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE,blank=True, null=True) # linking venders to users, and making sure they get deleted when the users do
+    display_name = models.CharField(max_length=255, default=created_by.name)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
     link = models.URLField(blank=True, null=True)
@@ -21,7 +22,7 @@ class Vendor(models.Model):
     g_review_count = models.IntegerField(default=0)
     
     class Meta: # this allows us to order by name
-        ordering = ['name']
+        ordering = ['display_name']
     
     def __str__(self): # this is a string representation - we see the vendor name instead of the object ID
         return self.name

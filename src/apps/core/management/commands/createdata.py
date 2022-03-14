@@ -69,7 +69,7 @@ class Command(BaseCommand):
             g_review_count = generate_review_count()
             
             vendor = Vendor.objects.get_or_create(
-                name = vendor_name,
+                display_name = vendor_name,
                 # created_at = generate_date_added,
                 image = image,
                 g_rating = g_rating,
@@ -97,7 +97,7 @@ class Command(BaseCommand):
 
                     repair = Repair(
                         category = Category.objects.get(name = category_name),
-                        vendor = Vendor.objects.get(name = vendor_name),
+                        vendor = Vendor.objects.get(display_name = vendor_name),
                         repair_type = RepairType.objects.get(name = type_name),
                         price = price,
 

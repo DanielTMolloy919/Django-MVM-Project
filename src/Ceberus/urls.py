@@ -21,7 +21,7 @@ from apps.vendor import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('vendor/', include('apps.vendor.urls')),
     path('', include('apps.core.urls')),
     path('', include('apps.repair.urls')),

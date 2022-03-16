@@ -2,25 +2,9 @@
 
 {% block title %}Search | {% endblock %} 
 
-{% block content %} {% comment %}
-<div class="columns is-multiline mb-6">
-  <div class="column is-12 has-text-centered mt-6 mb-6">
-    <h2 class="is-size-3">Search</h2>
-    <h3>Search term: "{{ query }}"</h3>
-  </div>
-
-  {% for repair in repairs %} {% include 'repair/parts/list_item.html' %} {%
-  endfor %} {% endcomment %} {% comment %}
-  <form method="get">
-    {{ filter.form.as_p }}
-    <input type="submit" />
-  </form>
-  {% endcomment %}
+{% block content %}
   <form action="." method="get">
     <div class="field is-horizontal">
-      {% comment %} <div class="field-label is-normal">
-        <label class="label">From</label>
-      </div> {% endcomment %}
       <div class="field-body">
         <div class="field">
           <label class="label">Device</label>
@@ -40,30 +24,34 @@
             </span>
           </p>
         </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <label class="label">Sort By</label>
+          <div class="control">
+            <div class="select">
+              <select name="sort_by">
+                {% for key, value in sort_list.items %}
+                <option value="{{ key }}"
+                {% if key == sort_by_query %}selected="selected"{% endif %}>
+                {{ value }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="field">
           <label class="label">Location</label>
-          <p class="control is-expanded has-icons-left">
+          <p class="control has-icons-left">
             <input class="input" type="text" name="location" placeholder="Bondi, NSW 2304" />
             <span class="icon is-small is-left">
               <span class="material-icons">place</span>
             </span>
           </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Sort By</label>
-      <div class="control">
-        <div class="select">
-          <select name="sort_by">
-            {% for key, value in sort_list.items %}
-            <option value="{{ key }}"
-            {% if key == sort_by_query %}selected="selected"{% endif %}>
-            {{ value }}
-            </option>
-            {% endfor %}
-          </select>
         </div>
       </div>
     </div>

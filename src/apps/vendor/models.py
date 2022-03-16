@@ -12,7 +12,7 @@ from apps.core.models import User
 class Vendor(models.Model):
     email = models.EmailField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE,blank=True, null=True) # linking venders to users, and making sure they get deleted when the users do
+    created_by = models.OneToOneField(User, related_name='vendor', on_delete=models.CASCADE) # linking venders to users, and making sure they get deleted when the users do
     display_name = models.CharField(max_length=255, default=created_by.name)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
@@ -25,7 +25,7 @@ class Vendor(models.Model):
         ordering = ['display_name']
     
     def __str__(self): # this is a string representation - we see the vendor name instead of the object ID
-        return self.name
+        return self.display_name
     
     def get_thumbnail(self): # Checks whether a thumb nail exists
         if self.thumbnail: # if the thumbnail already exists we don't need to do anything

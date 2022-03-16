@@ -21,7 +21,7 @@ def become_vendor(request):
 
             login(request, user) # logs in the newly created user
 
-            vendor = Vendor.objects.create(email=user.username, created_by=user) # copies over the collected data to create a vendor object
+            vendor = Vendor.objects.create(email=user.email, display_name=user.name ,created_by=user) # copies over the collected data to create a vendor object
 
             return redirect('frontpage') # pushes the user back to the front page
             

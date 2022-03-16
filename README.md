@@ -14,6 +14,11 @@ https://stackpython.medium.com/how-to-start-django-project-with-a-database-postg
 - Geolocation
 - Payment APIs
 
+### Last Save
+
+Display name null when createdata vendor is created - installing debugpy for docker debugging
+https://testdriven.io/blog/django-debugging-vs-code/
+
 ### Setup
 
 - Setup python environment `python3 -m venv env`
@@ -43,8 +48,8 @@ https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c
 
 #### Enter Container from Terminal
 
-- `docker exec -it django-mvm-project-web-1 /bin/bash`
-- `docker exec -it django-mvm-project-db-1 /bin/bash`
+- `docker exec -it django-mvm-project_web_1 /bin/bash`
+- `docker exec -it django-mvm-project_db_1 /bin/bash`
 
 ## Other Functions
 
@@ -79,11 +84,14 @@ https://stackoverflow.com/questions/62807717/how-can-i-solve-postgresql-scram-au
 https://youtu.be/PD3YnPSHC-c
 
 1. In the src folder run `python manage.py shell`
-2. Import your desired model e.g. `from apps.vendor.models import Vendor` `from apps.product.models import Product`
+2. Import your desired model e.g. `from apps.vendor.models import Vendor from apps.repair.models import Category, RepairType, Repair`
 3. Useful commands
+
    - Retrieve all objects `Product.objects.all()`
    - Delete one object `Product.objects.filter(title='test').delete()`
    - Print object attribute `Product.objects.filter(title='test').vendor`
+
+   `exec(open('shell_loader.py').read())`
 
 ### Refresh Database
 

@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 from apps.repair.models import Category, RepairType
+from apps.core.models import User
 from apps.repair.views import Repair, repair 
 import random, datetime
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -57,6 +58,7 @@ def load_image():
 class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
+
         for x in range(6): #generate all dummy vendors
             vendor_name = vendors[x]
             
@@ -67,9 +69,16 @@ class Command(BaseCommand):
 
             g_rating = generate_rating()
             g_review_count = generate_review_count()
+
+            User.objects.create(
+            name = "test",
+            email = "test" + str(x) + "@test.com",
+            password = "test12345"
+        )
             
             vendor = Vendor.objects.get_or_create(
                 display_name = vendor_name,
+                created_by = User.objects.get(email = "test" + str(x) + "@test.com"),
                 # created_at = generate_date_added,
                 image = image,
                 g_rating = g_rating,

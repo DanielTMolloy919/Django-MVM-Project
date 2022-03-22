@@ -16,8 +16,7 @@ https://stackpython.medium.com/how-to-start-django-project-with-a-database-postg
 
 ### Last Save
 
-Display name null when createdata vendor is created - installing debugpy for docker debugging
-https://testdriven.io/blog/django-debugging-vs-code/
+Trying to install jQuery, psycopg2 having issues, [switched images](https://stackoverflow.com/questions/62807717/how-can-i-solve-postgresql-scram-authentifcation-problem),[trying to solve PILLOW issues](https://stackoverflow.com/questions/69624327/failed-building-wheel-for-pillow)
 
 ### Setup
 

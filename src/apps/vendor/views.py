@@ -11,6 +11,7 @@ from apps.repair.models import Repair
 
 from .forms import RepairForm
 from apps.core.forms import RegisterForm
+from apps.vendor.forms import VendorCompletionForm
 
 def become_vendor(request):
     if request.method == 'POST': # this checks whether the sign up form has been submitted 
@@ -21,17 +22,35 @@ def become_vendor(request):
 
             login(request, user) # logs in the newly created user
 
-            vendor = Vendor.objects.create(email=user.email, display_name=user.name ,created_by=user) # copies over the collected data to create a vendor object\
+            vendor = Vendor.objects.create(email=user.email, display_name=user.name ,created_by=user) # copies over the collected data to create a vendor object
 
-            vendor = Vendor.objects.create(email=user.email, created_by=user) # copies over the collected data to create a vendor object
-
-
-            return redirect('frontpage') # pushes the user back to the front page
+            return render(request, 'vendor/signup.html', {'vendor': vendor}) # pushes the user back to the front page
             
     else:
         form = RegisterForm() # creates an empty form
 
     return render(request, 'vendor/become_vendor.html', {'form': form}) # make the form accessible by the front end html
+
+# @login_required
+def finish_signup(request):
+    if request.method == 'POST': # this checks whether the sign up form has been submitted 
+        form = VendorCompletionForm(request.POST) # pushing all the data we just collected into an object called 'form'
+
+        if form.is_valid(): # executes if the user entered their data correctly
+            user = form.save() # saves collected data to a new user object
+
+            login(request, user) # logs in the newly created user
+
+            vendor = Vendor.objects.create(email=user.email, display_name=user.name ,created_by=user) # copies over the collected data to create a vendor object
+
+            return render(request, 'vendor/signup.html', {'vendor': vendor}) # pushes the user back to the front page
+            
+    else:
+        form = VendorCompletionForm() # creates an empty form
+
+    return render(request, 'vendor/signup.html', {'form': form})
+
+
 
 @login_required # this checks if the user has already logged in, if not the user will be redirected to the login page
 def vendor_admin(request): # code for the vendor interface

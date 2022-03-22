@@ -1,0 +1,68 @@
+{% extends 'core/base.html'%} 
+
+
+{% block title%}Vendor Signup | {% endblock %} 
+
+{% block content %}
+
+<script>
+    function readURL(input) {
+        console.log("Success");
+        if (input.files && input.files[0]) {
+            console.log("File success");
+            var reader = new FileReader();
+    
+            reader.onload = function (e) {
+                $('#vendor_logo').attr('src', e.target.result);
+            };
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    </script>
+
+<div class="signup-page container">
+<h1 class="title centered">Create Your Vendor Profile</h1>
+
+
+<form method="post">
+    <div class="field">
+        <label class="label" for="id_display_name">Store Name</label>
+        <p class="control">
+          {{ form.display_name }}
+        </p>
+    </div>
+    <div class="field">
+        <label class="label" for="id_image">Upload Logo</label>
+        <p>
+            <label class="file-label">
+            <input class="file-input" accept="image/*" type="file" name="images" onchange="readURL(this);">
+            <span class="file-cta">
+                <span class="file-icon">
+                    <span class="icon is-small is-left">
+                        <span class="material-icons">file_upload</span>
+                    </span>
+                </span>
+                <span class="file-label">
+                Choose a file…
+                </span>
+            </span>
+            <span class="file-name">
+                Screen Shot 2017-07-29 at 15.54.25.png
+            </span>
+            </label>
+        </p>
+        <img id="vendor_logo">
+    </div>
+    <div class="field">
+        <label class="label" for="id_website">Link to Your Website</label>
+        <p class="control">
+          {{ form.website }}
+        </p>
+    </div>
+</form>
+
+
+</div>
+{% endblock %}

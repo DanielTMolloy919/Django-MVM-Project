@@ -2,18 +2,6 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles/style.css' %}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-{% comment %} <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" /> {% endcomment %}
-{% comment %} <script>
-    $( function() {
-    $( "#device" ).autocomplete({
-      source: "{% url %}"
-    });
-});
-</script> {% endcomment %}
-<script>
-console.log($("test"));
-debugger;
-</script>
 
 <html>
     <head>
@@ -26,57 +14,7 @@ debugger;
     </head>
 
     <body>
-        {% comment %} {% include 'core/navbar.html' %} {% endcomment %}
-        <nav class="navbar is-primary-color" role="nagivation">
-            <div class="navbar-brand">
-                <a href="/" class="navbar-item"><strong>Ceberus</strong></a>
-                
-
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        
-            <div class="navbar-menu" id="main-navbar">
-                <div class="navbar-center">
-                    {% comment %} <div class="navbar-item">
-                        <form method="get" action="{% url 'search' %}">
-                        <div class="field has-addons"> 
-                            <p class="control is-expanded">
-                                <input type="text" class="input navbar-input" placeholder="Device" name="device" id="device">
-                            </p>
-
-                            <p class="control is-expanded">
-                                <input type="text" class="input navbar-input" placeholder="Repair/Issue" name="repair" id="repair">
-                            </p>
-
-                            
-
-                            <div class="control">
-                                <button class="button is-primary-color-dark">
-                                    <span class="material-icons">search</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div> {% endcomment %}
-                <div class="navbar-end">
-                    <div class="navbar-item">
-                        <div class="buttons">
-                            {% if request.user.is_authenticated %} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
-                                <a class="button is-rounded" href="{% url 'edit_profile' %}" >Edit Profile</a>
-                                <a class="button is-rounded" href="{% url 'logout' %}">Logout</a>
-                            {% else %} <!--otherwise link to becoming a vendor-->
-                            <a class="button is-rounded" href="{% url 'become_vendor' %}">Sign Up</a>
-                                <a class="button is-rounded" href="{% url 'login' %}">Login</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        {% include 'core/navbar.html' %}
         
         <section class="section">
                 {% block content %}

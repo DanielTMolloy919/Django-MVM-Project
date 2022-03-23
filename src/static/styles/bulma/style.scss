@@ -34,7 +34,11 @@ $spacing-values: (
   "8": 4rem,
 );
 
-// $container-max-width: px;
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
 
 $custom-colors: (
   "primary-color": $primary-color,

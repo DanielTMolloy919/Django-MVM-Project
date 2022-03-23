@@ -14,6 +14,8 @@
     
             reader.onload = function (e) {
                 $('#vendor_logo').attr('src', e.target.result);
+                $( "span.file-name" ).text($('input[type=file]').val().split('\\').pop());
+                // $('#file-name').val();
             };
     
             reader.readAsDataURL(input.files[0]);
@@ -48,12 +50,14 @@
                 Choose a file…
                 </span>
             </span>
-            <span class="file-name">
-                Screen Shot 2017-07-29 at 15.54.25.png
+            <span class="file-name" id="file-name">
+                No file uploaded yet
             </span>
             </label>
         </p>
-        <img id="vendor_logo">
+        <div class="center">
+            <img id="vendor_logo">
+        </div>
     </div>
     <div class="field">
         <label class="label" for="id_website">Link to Your Website</label>

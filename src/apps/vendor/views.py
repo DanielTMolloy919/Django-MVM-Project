@@ -34,14 +34,21 @@ def become_vendor(request):
 # @login_required
 def finish_signup(request):
     if request.method == 'POST': # this checks whether the sign up form has been submitted 
-        form = VendorCompletionForm(request.POST) # pushing all the data we just collected into an object called 'form'
+        form = VendorCompletionForm(request.POST, request.FILES) # pushing all the data we just collected into an object called 'form'
 
         if form.is_valid(): # executes if the user entered their data correctly
-            user = form.save() # saves collected data to a new user object
 
-            login(request, user) # logs in the newly created user
+            # vendor = request.vendor  # copies over the collected data to create a vendor object
 
-            vendor = Vendor.objects.create(email=user.email, display_name=user.name ,created_by=user) # copies over the collected data to create a vendor object
+            print("valid success")
+
+            vendor = Vendor.objects.filter(email='test@test.com')[0]
+
+            vendor.display_name = form['display_name'].value()
+            vendor.image = form['logo'].value()
+            vendor.link = form['website'].value()
+
+            vendor.save()
 
             return render(request, 'vendor/signup.html', {'vendor': vendor}) # pushes the user back to the front page
             

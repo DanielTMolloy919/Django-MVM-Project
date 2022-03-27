@@ -15,7 +15,6 @@
             reader.onload = function (e) {
                 $('#vendor_logo').attr('src', e.target.result);
                 $( "span.file-name" ).text($('input[type=file]').val().split('\\').pop());
-                // $('#file-name').val();
             };
     
             reader.readAsDataURL(input.files[0]);
@@ -28,18 +27,23 @@
 <h1 class="title centered">Create Your Vendor Profile</h1>
 
 
-<form method="post">
+<form method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+
+    {{ form.errors }}
     <div class="field">
         <label class="label" for="id_display_name">Store Name</label>
         <p class="control">
-          {{ form.display_name }}
+            {{ form.display_name }}
         </p>
     </div>
     <div class="field">
         <label class="label" for="id_image">Upload Logo</label>
+        
         <p>
             <label class="file-label">
-            <input class="file-input" accept="image/*" type="file" name="images" onchange="readURL(this);">
+            {{ form.logo }}
+            <!-- <input class="file-input" accept="image/*" type="file" name="images" onchange="readURL(this);"> -->
             <span class="file-cta">
                 <span class="file-icon">
                     <span class="icon is-small is-left">
@@ -55,8 +59,8 @@
             </span>
             </label>
         </p>
-        <div class="center">
-            <img id="vendor_logo">
+        <div class="logo-preview">
+            <img id="vendor_logo" class="max-height: 300px;">
         </div>
     </div>
     <div class="field">
@@ -65,6 +69,13 @@
           {{ form.website }}
         </p>
     </div>
+    <div class="field">
+        <p class="control">
+          <button class="button is-success">
+            Sign up
+          </button>
+        </p>
+      </div>
 </form>
 
 

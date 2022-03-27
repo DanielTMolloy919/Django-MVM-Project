@@ -11,7 +11,7 @@ class RepairForm(ModelForm): # display a form where the vendor can enter in the 
 
 class VendorCompletionForm(forms.Form):
     display_name = forms.CharField(label="Display Name", max_length=100)
-    image = forms.ImageField()
+    logo = forms.ImageField()
     website = forms.URLField(label="Website", max_length=200)
 
 
@@ -21,9 +21,11 @@ class VendorCompletionForm(forms.Form):
             'id':'display_name',
             'class':'input'
         })
-        self.fields["image"].widget.attrs.update({
-            'id':'image',
-            'class':'input'
+        self.fields["logo"].widget.attrs.update({
+            'id':'logo',
+            'class':'file-input',
+            'onchange':'readURL(this);',
+            'name': 'images'
         })
         self.fields["website"].widget.attrs.update({
             'id':'website',
@@ -32,4 +34,4 @@ class VendorCompletionForm(forms.Form):
         
     class Meta:
         model=Vendor
-        fields=['display_name','image','website']
+        fields=['display_name','logo','website']

@@ -47,8 +47,8 @@ https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c
 
 #### Enter Container from Terminal
 
-- `docker exec -it django-mvm-project_web_1 /bin/bash`
-- `docker exec -it django-mvm-project_db_1 /bin/bash`
+- `docker exec -it django-mvm-project-web-1 /bin/bash`
+- `docker exec -it django-mvm-project-db-1 /bin/bash`
 
 ## Other Functions
 

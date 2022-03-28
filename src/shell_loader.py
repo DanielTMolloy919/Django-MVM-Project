@@ -11,5 +11,7 @@ def clear_database(test_data):
     Repair.objects.all().delete()
     User.objects.all().delete()
 
+    os.system('rm -rf media/uploads/')
+
     if (test_data):
         os.system('python manage.py createdata')

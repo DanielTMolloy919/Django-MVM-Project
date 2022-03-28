@@ -24,25 +24,25 @@ def become_vendor(request):
 
             vendor = Vendor.objects.create(email=user.email, display_name=user.name ,created_by=user) # copies over the collected data to create a vendor object
 
-            return render(request, 'vendor/signup.html', {'vendor': vendor}) # pushes the user back to the front page
+            request.session['vendor'] = vendor
+
+            return finish_signup(request) # pushes the user back to the front page
             
     else:
         form = RegisterForm() # creates an empty form
 
     return render(request, 'vendor/become_vendor.html', {'form': form}) # make the form accessible by the front end html
 
-# @login_required
+@login_required
 def finish_signup(request):
+    vendor = request.session['vendor']
+
     if request.method == 'POST': # this checks whether the sign up form has been submitted 
         form = VendorCompletionForm(request.POST, request.FILES) # pushing all the data we just collected into an object called 'form'
 
         if form.is_valid(): # executes if the user entered their data correctly
 
-            # vendor = request.vendor  # copies over the collected data to create a vendor object
-
-            print("valid success")
-
-            vendor = Vendor.objects.filter(email='test@test.com')[0]
+            # vendor = Vendor.objects.filter(email='test@test.com')[0]
 
             vendor.display_name = form['display_name'].value()
             vendor.image = form['logo'].value()
@@ -50,12 +50,12 @@ def finish_signup(request):
 
             vendor.save()
 
-            return render(request, 'vendor/signup.html', {'vendor': vendor}) # pushes the user back to the front page
+            return redirect('vendor_admin')# pushes the user back to the front page
             
     else:
         form = VendorCompletionForm() # creates an empty form
 
-    return render(request, 'vendor/signup.html', {'form': form})
+    return render(request, 'vendor/signup.html', {'vendor': vendor})
 
 
 

@@ -12,7 +12,7 @@
 
     <div class="navbar-menu" id="main-navbar">
         <div class="navbar-center">
-        <div class="navbar-end">
+        {% comment %} <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
                     {% if request.user.is_authenticated %} <!--if the user is already signed up as a vendor, link to the vender dashboard-->       
@@ -24,6 +24,6 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 </nav>

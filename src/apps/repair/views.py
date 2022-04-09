@@ -3,6 +3,8 @@ import random
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
+from django.core.paginator import Paginator
+
 from .models import Category, Repair
 
 from .filters import RepairFilter # import the filter for the search view
@@ -38,6 +40,12 @@ def search(request):
     else:
         sort_by_query = ""
 
+    p = Paginator(qs, 20)
+
+    page_number = request.GET.get('page')
+
+    page_obj = p.get_page(page_number)
+
     sort_list = { # a dictionary of different ways the results can be sorted
         'best':'Best',
         'highest_rated':'Highest Rated',
@@ -45,7 +53,7 @@ def search(request):
     }
 
     context = {
-        'queryset': qs,
+        'queryset': page_obj,
         'category_query': category_query,
         'repair_type_query': repair_type_query,
         'sort_by_query': sort_by_query,

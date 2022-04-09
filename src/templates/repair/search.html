@@ -69,8 +69,33 @@
 
   <div class="column is-12 repair-list-item">
     {% for repair in queryset %}
-    {% include 'repair/parts/list_item.html'%} 
+      {% include 'repair/parts/list_item.html'%} 
     {% endfor %}
   </div>
+
+  <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+    {% if page_obj.has_previous %}
+      <a class="pagination-previous">Previous</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <a class="pagination-next">Next page</a>
+    {% endif %}
+    <ul class="pagination-list">
+      {% if page_obj.has_previous %}
+        <li><a class="pagination-link" href="?page=1">1</a></li>
+      {% endif %}
+      {% if page_obj.number > 1 and page_obj.paginator.num_pages > 2 %}
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+      {% endif %}
+      <li><a class="pagination-link is-current">{{ page_obj.number }}</a></li>
+
+      {% if page_obj.has_next %}
+        <li><a class="pagination-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+      {% endif %}
+    </ul>
+  </nav>
   {% endblock %}
 </div>

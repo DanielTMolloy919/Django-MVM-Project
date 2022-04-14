@@ -13,5 +13,8 @@
   "devDependencies": {
     "bulma": "^0.9.3",
     "node-sass": "^6.0.0"
+  },
+  "dependencies": {
+    "bulma-floating-button": "^1.0.3"
   }
 }

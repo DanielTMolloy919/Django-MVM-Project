@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        {% include 'core/navbar.html' %}
+        <!-- {% include 'core/navbar.html' %} -->
         
         <section class="section">
                 {% block content %}
@@ -30,6 +30,12 @@
             {% else %} <!--otherwise link to becoming a vendor-->
                 <a href="{% url 'become_vendor' %}">Become vendor</a>
             {% endif %}
+        </footer>
+        <a href="#" class="button is-floating is-large">
+            <span class="material-icons" style="font-size: 36px;">
+                question_answer
+            </span>
+        </a>    
     </body>
 </html>
 

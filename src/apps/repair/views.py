@@ -40,9 +40,17 @@ def search(request):
     else:
         sort_by_query = ""
 
-    p = Paginator(qs, 20)
+    p = Paginator(qs, 10)
 
-    page_number = request.GET.get('page')
+    page_number = int(request.GET.get('page',1))
+
+    display_prev = False;
+    if page_number > 2:
+        display_prev = True;
+
+    display_next = False;
+    if page_number < (p.num_pages - 1):
+        display_next = True;
 
     page_obj = p.get_page(page_number)
 
@@ -53,11 +61,13 @@ def search(request):
     }
 
     context = {
-        'queryset': page_obj,
+        'page_obj': page_obj,
         'category_query': category_query,
         'repair_type_query': repair_type_query,
         'sort_by_query': sort_by_query,
-        'sort_list': sort_list
+        'sort_list': sort_list,
+        'display_prev': display_prev,
+        'display_next': display_next
     }
 
     return render(request, 'repair/search.html', context)
